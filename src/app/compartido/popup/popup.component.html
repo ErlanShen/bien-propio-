@@ -1,0 +1,8 @@
+<div class="Modal p-d-flex">
+    <p-dialog header="{{texto}}" [(visible)]="displayModal" [breakpoints]="{'960px': '100vh', '640px': '100vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+        <img src="{{imagen}}">
+        <ng-template pTemplate="footer" class="p-jc-center">
+            <p-button [routerLink]="[link]" (click)="displayModal=false" label="Ruta" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-dialog>
+</div>

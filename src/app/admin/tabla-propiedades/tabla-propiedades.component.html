@@ -1,0 +1,105 @@
+<div class="p-d-flex p-jc-center contenedor">
+    <div class="p-fluid p-formgrid p-grid Cuerpo">
+        <p-table [value]="propiedad" #dt [(selection)]="selectedCustomers" dataKey="id" styleClass="p-datatable-customers" [rowHover]="true"
+        [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+        [paginator]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0" [globalFilterFields]="['titulo']">
+        
+        <ng-template pTemplate="caption">
+            <div class="table-header p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-12 p-md-7">
+                    <h4>DATOS PROPIEDADES</h4>
+                </div>
+                <div class="p-field p-col-12 p-md-1">
+                    <h4>Buscar</h4>
+                </div>
+                <div class="p-field p-col-12 p-md-4">
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Escriba un titulo" />
+                    </span>
+                </div>
+            </div>
+        </ng-template>
+        
+        <ng-template pTemplate="header" class="p-fluid p-formgrid p-grid">
+                <tr>
+                    <th pSortableColumn="titulo" class="p-field p-col-12 p-md-3">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'FORMPROPIEDAD.TITULO' | translate}}
+                            <p-sortIcon field="titulo"></p-sortIcon>
+                            <p-columnFilter type="text" field="titulo" display="menu" class="p-ml-auto">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th pSortableColumn="tipo" class="p-field p-col-12 p-md-2">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'FORMPROPIEDAD.TIPO' | translate}}
+                            <p-sortIcon field="tipo"></p-sortIcon>
+                            <p-columnFilter type="text" field="tipo" display="menu" class="p-ml-auto">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th pSortableColumn="precio" class="p-field p-col-12 p-md-2">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'FORMPROPIEDAD.PRECIO' | translate}}
+                            <p-sortIcon field="precio"></p-sortIcon>
+                            <p-columnFilter type="text" field="precio" display="menu" class="p-ml-auto">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th pSortableColumn="estado" class="p-field p-col-12 p-md-2">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'FORMPROPIEDAD.ESTADO' | translate}}
+                            <p-sortIcon field="estado"></p-sortIcon>
+                            <p-columnFilter type="text" field="propietarios" display="menu" class="p-ml-auto">
+                            </p-columnFilter>
+                        </div>
+                    </th>
+                    <th pSortableColumn="galeria" class="p-field p-col-12 p-md-2">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'FORMPROPIEDAD.IMGDESTACADA' | translate}}
+                        </div>
+                    </th>
+                    <th pSortableColumn="negocio" class="p-field p-col-12 p-md-1">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'BOTONES.EDITAR' | translate}}
+                        </div>
+                    </th>
+                    <th pSortableColumn="negocio" class="p-field p-col-12 p-md-1">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            {{'BOTONES.ELIMINAR' | translate}}
+                        </div>
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-propiedad>
+                <tr>
+                    <td>
+                        {{propiedad.titulo}}
+                    </td>
+                    <td>
+                        {{intermediaria(propiedad.tipo)}}
+                    </td>
+                    <td>
+                        {{propiedad.precio | currency}}
+                    </td>
+                    <td>
+                        {{intermediariaEstado(propiedad.activo)}}
+                    </td>
+                    <td>
+                        <img [src]="propiedad.imgDestcada" alt="" width="100" class="p-shadow-4">
+                    </td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-pencil"
+                            class="p-button-rounded" routerLink="/admin/formpropiedad/{{propiedad.id}}"></button>
+                    </td>
+                    <td>
+                        <button pButton pRipple type="button" icon="pi pi-trash"
+                            class="p-button-rounded p-button-danger  p-shadow-3" (click)="eliminar(propiedad)"></button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

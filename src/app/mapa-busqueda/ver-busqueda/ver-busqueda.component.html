@@ -1,0 +1,14 @@
+<div class="container p-grid p-nogutter"  onLoad="ajustarTamaño()"> 
+    <div class="p-col-12 p-sm-12 p-md-12 p-lg-5 p-xl-5 ">
+       <app-mapa *ngIf="propiedades" [propiedades]="propiedades"  busqueda={{busqueda}} [editar]='false'  >
+        </app-mapa> 
+    </div>
+    <div class="p-col-12 p-sm-12 p-md-12 p-lg-7 p-xl-7 "  #PanelDerecha  >       
+         <app-tarjeta-propiedad *ngIf="propiedades && propiedades.length > 0 ; else contrario " [propiedades]="propiedades"  [paginator]="true" [cantidad]="cantidad"></app-tarjeta-propiedad>  
+        
+         <ng-template #contrario>
+             <h1>{{'CLIENTE.TITULOS.INEXISTENTEPROP'|translate}}</h1>
+         </ng-template>   
+    </div>
+
+</div>

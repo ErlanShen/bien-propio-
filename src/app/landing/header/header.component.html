@@ -1,0 +1,43 @@
+
+<div class="Encabezado" *ngIf="identidad">
+    <div class="traduccion">
+        <p-menubar #mb1 class="menusDiseño invisible ">
+            <ng-template pTemplate="end">
+                {{ 'MENU.IDIOMA' | translate }}
+                <p-dropdown [options]="misIdiomas" [(ngModel)]="lenguaje" (onChange)="translate.use($event.value)" optionLabel="lenguaje" optionValue="simbolo"></p-dropdown>
+            </ng-template>
+        </p-menubar>
+        
+        <p-menubar #mb2 [model]="mimenu3"  class="menusDiseño visible " >
+            <ng-template pTemplate="end">
+                {{ 'MENU.IDIOMA' | translate }}
+                <p-dropdown [options]="misIdiomas" [(ngModel)]="lenguaje" (onChange)="translate.use($event.value)" optionLabel="lenguaje" optionValue="simbolo"></p-dropdown>
+            </ng-template>
+        </p-menubar>
+    </div>
+    <div class="p-col-12 p-grid">
+        <div class=" p-col-12  p-d-flex  p-jc-center p-grid  ">
+            <p-megaMenu #m1 [model]="mimenu" class="p-col-12 p-col-md-4 p-lg-4 p-xl-4 p-d-flex  nomostrar " #elmenu></p-megaMenu>
+            <div class="p-col-12 p-col-md-4 p-lg-4 p-xl-4 p-d-flex p-jc-center header  ">
+                <img (click)="nav()" src="{{identidad.logo}}" class="imagen p-d-flex" alt="">
+            </div>
+            <p-megaMenu #m2 [model]="mimenu2" class="p-col-12 p-col-md-4 p-lg-4 p-xl-4 p-d-flex p-jc-end  nomostrar "></p-megaMenu>
+        </div>
+    </div>
+   
+</div>
+<app-popup [texto]="promocion.titulo" [link]="promocion.ruta" [imagen]="promocion.imagen" *ngIf="promocion" [mostrar]="verModal"></app-popup>
+<p-dialog [header]="'MENU.LOGIN' | translate" [(visible)]="displaylogin" [modal]="true" [breakpoints]="{'960px': '75vw'}" [style]="{width: '50vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    <div class="card">
+        <p-tabView>
+            <p-tabPanel  [header]="'MENU.SINGIN' | translate">
+                <app-login (avisame)="quitarmodal($event)"></app-login>
+            </p-tabPanel>
+            <p-tabPanel [header]="'MENU.REGISTRAR' | translate">
+                <app-registro (avisame)="quitarmodal($event)"></app-registro>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</p-dialog>
+
+

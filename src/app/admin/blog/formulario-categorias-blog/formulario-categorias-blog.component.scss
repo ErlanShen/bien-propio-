@@ -1,0 +1,15 @@
+.container {
+    min-width: 75vw;
+    margin: 1rem;
+}
+
+::ng-deep .formularioP .p-card {
+    width: 480px !important;
+}
+
+::ng-deep .formularioP .p-calendar .p-datepicker-month,
+::ng-deep .p-datepicker-year {
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

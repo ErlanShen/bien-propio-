@@ -1,0 +1,164 @@
+<!-- <div class="masBlogs p-d-flex p-flex-column">
+
+    <div class="titulo p-d-flex p-jc-center">
+        <h2>Weekly Blogs</h2>
+    </div>
+    <div class="cartasBlogs p-d-flex p-jc-center" *ngFor="let item of blogActuales">
+
+        <div class="imagen p-as-stretch ">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+        <div class="texto p-d-flex p-flex-column">
+            <div class="contenido1 p-d-flex p-flex-column">
+                <h3>{{item.titulo[0]}}</h3>
+                <p>Descripcion</p>
+                <p>Aqui va un enlace</p>
+            </div>
+            <div class="contenido2 p-d-flex p-flex-column p-jc-center p-mt-auto">
+                <h3 class="p-d-flex p-jc-end">{{item.titulo[1]}}</h3>
+                <p class="p-d-flex p-jc-end">Aquí va toda la descripcion</p>
+                <p class="p-d-flex p-jc-end">Aqui va un enlace</p>
+            </div>
+        </div>
+        <div class="imagen2 p-d-flex p-ai-strech ">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+
+    </div>
+
+    <div class="cartasBlogs p-d-flex p-jc-center">
+        <div class="imagen3 p-as-stretch ">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+        <div class="texto2 p-d-flex p-flex-column">
+            <div class="contenido1 p-d-flex p-flex-column p-jc-center">
+                <h3 class="p-d-flex"></h3>
+                <p>Aquí va toda la descripcion</p>
+                <p>Aqui va un enlace</p>
+            </div>
+            <div class="contenido2 p-d-flex p-flex-column p-jc-center p-mt-auto">
+                <h3 class="p-d-flex p-jc-end"></h3>
+                <p class="p-d-flex p-jc-end">Aquí va toda la descripcion</p>
+                <p class="p-d-flex p-jc-end">Aqui va un enlace</p>
+            </div>
+        </div>
+        <div class="imagen4 p-as-stretch ">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+    </div>
+
+</div> -->
+
+<!-- <div class="container p-d-flex p-jc-center">
+    <div class="p-d-flex p-flex-column">
+        <div class="imagenG">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+        <div class="imagenP p-d-flex">
+            <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+        </div>
+    </div>
+    <div class="contenido1 p-d-flex p-flex-column">
+        <div class="informacion1 p-d-flex p-flex-column p-jc-center">
+            <p>Titulo</p>
+            <p>Descripcion</p>
+            <p>Enlace</p>
+        </div>
+        <div class="informacion2 p-d-flex p-flex-column p-jc-center">
+            <p class="p-d-flex p-jc-end">Titulo</p>
+            <p class="p-d-flex p-jc-end">Descripcion</p>
+            <p class="p-d-flex p-jc-end">Enlace</p>
+        </div>
+        <div class="informacion3 p-d-flex p-flex-column p-jc-center">
+            <p>Titulo</p>
+            <p>Descripcion</p>
+            <p>Enlace</p>
+        </div>
+        <div class="informacion4 p-d-flex p-flex-column p-jc-center p-mt-auto">
+            <p class="p-d-flex p-jc-end">Titulo</p>
+            <p class="p-d-flex p-jc-end">Descripcion</p>
+            <p class="p-d-flex p-jc-end">Enlace</p>
+        </div>
+    </div>
+    <div class="p-d-flex p-flex-column p-flex-wrap-">
+        <div class="fotosDerecha">
+            <div class="imagenG2">
+                <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+            </div>
+            <div class="imagenP2">
+                <img src="https://image.freepik.com/foto-gratis/paisaje-vertical-lago-montanas_1398-1184.jpg " alt=" ">
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- BLOGS DINAMICOS -->
+<!-- <div class="container p-d-flex" *ngIf="medida && blog">
+    <div class="prueba p-d-flex p-flex-column  p-flex-wrap{{medida.reverse}}">
+        <div class="contenido1 imagen p-d-flex p-flex-column p-jc-center" [ngStyle]="{'min-height': medida.alturaImgG, 'background-image': 'url('+blog.imagen+')'}"></div>
+        <div class="contenido2 p-d-flex p-d-flex p-flex-column p-jc-center" *ngIf="transformador(medida.alturaInfo) > 0" [ngStyle]="{'min-height': medida.alturaInfo}">
+            <h2 class="p-text-truncate">{{blog.titulo}}</h2>
+            <p>{{blog.descripcionCompleta}}</p>
+            <p>Enlace</p>
+        </div>
+        <div class="contenido2 p-d-flex p-d-flex p-flex-column p-jc-center" *ngIf="transformador(medida.alturaInfo2) > 0" [ngStyle]="{'min-height': medida.alturaInfo2, 'margin-top': '50%'}">
+            <p class="p-d-flex p-jc-end p-text-right">{{blog.titulo}}n</p>
+            <p class="p-d-flex p-jc-end p-text-right">{{blog.descripcionCompleta}}</p>
+            <p class="p-d-flex p-jc-end p-text-right">Enlace</p>
+        </div>
+        <div class="contenido2 p-d-flex p-d-flex p-flex-column p-jc-center" *ngIf="transformador(medida.alturaInfo3) > 0" [ngStyle]="{'min-height': medida.alturaInfo3, 'margin-top': '60%'}">
+            <p class="p-d-flex p-jc-end p-text-right">{{blog.titulo}}c</p>
+            <p class="p-d-flex p-jc-end p-text-right">{{blog.descripcionCompleta}}</p>
+            <p class="p-d-flex p-jc-end p-text-right">Enlace</p>
+        </div>
+    </div>
+</div> -->
+
+<!--BLOG VERSION FINAL-->
+<div class="container p-d-flex p-jc-center" *ngIf="blogsActuales">
+    <div class="p-d-flex p-flex-column">
+        <div class="imagenG" [ngStyle]="{'background-image':'url('+ blogsActuales[0].imagen +')'}">
+
+        </div>
+        <div class="imagenP p-d-flex" [ngStyle]="{'background-image':'url('+ blogsActuales[2].imagen +')'}">
+
+        </div>
+    </div>
+    <div class="contenido1 p-d-flex p-flex-column">
+        <div class="informacion1 p-d-flex p-flex-column p-jc-center">
+            <h2>{{blogsActuales[0].titulo}}</h2>
+            <p>{{blogsActuales[0].descripcionCompleta}}</p>
+            <p-button class="verArticulo" routerLink="/blog/entrada/{{blogsActuales[0].id}}">
+                {{'MOSTRARBLOGS.VERARTICULO' | translate}}
+            </p-button>
+        </div>
+        <div class="informacion2 p-d-flex p-flex-column p-jc-center p-mb-4">
+            <h2 class="p-d-flex p-jc-end p-text-right">{{blogsActuales[1].titulo}}</h2>
+            <p class="p-d-flex p-jc-end p-text-right">{{blogsActuales[1].titulo}}</p>
+            <p-button class="verArticulo p-d-flex p-jc-end p-text-right" routerLink="/blog/entrada/{{blogsActuales[1].id}}">
+                {{'MOSTRARBLOGS.VERARTICULO' | translate}}
+            </p-button>
+        </div>
+        <div class="informacion3 p-d-flex p-flex-column p-jc-center">
+            <h2>{{blogsActuales[2].titulo}}</h2>
+            <p>{{blogsActuales[2].descripcionCompleta}}</p>
+            <p-button class="verArticulo" routerLink="/blog/entrada/{{blogsActuales[2].id}}">
+                {{'MOSTRARBLOGS.VERARTICULO' | translate}}
+            </p-button>
+        </div>
+        <div class="informacion4 p-d-flex p-flex-column p-jc-center p-mt-auto">
+            <h2 class="p-d-flex p-jc-end p-text-right">{{blogsActuales[3].titulo}}</h2>
+            <p class="p-d-flex p-jc-end p-text-right">{{blogsActuales[3].descripcionCompleta}}</p>
+            <p-button class="verArticulo p-d-flex p-jc-end p-text-right" routerLink="/blog/entrada/{{blogsActuales[3].id}}">
+                {{'MOSTRARBLOGS.VERARTICULO' | translate}}
+            </p-button>
+
+        </div>
+    </div>
+    <div class="p-d-flex p-flex-column">
+        <div class="imagenG2" [ngStyle]="{'background-image':'url('+ blogsActuales[1].imagen +')'}">
+        </div>
+        <div class="imagenP2" [ngStyle]="{'background-image':'url('+ blogsActuales[3].imagen +')'}">
+        </div>
+    </div>
+</div>

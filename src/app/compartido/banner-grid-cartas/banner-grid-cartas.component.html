@@ -1,0 +1,24 @@
+<div class="p-d-flex p-flex-column container">
+    <div class="p-m-1" *ngFor="let item of recomendados">
+        <h1 class="p-ml-2">{{item.titulo}}</h1>
+        <ng-container *ngIf="filtrarPropiedades(item.propiedades, propiedades) as imprimir">
+            <swiper class="swContainerDetalle p-mx-2" [config]="config" #diapositiva>
+                <ng-template *ngFor="let item of generarRango(imprimir.length); let acumulado=index" swiperSlide>
+                    <div class="p-d-flex p-flex-column p-flex-wrap p-ac-start swiper-diapo">
+                        <div [ngStyle]="{'background-image': 'url('+recomend.imgDestcada+')'}"
+                            [ngClass]="indice%5===0?'grande':'mediano'"
+                            *ngFor="let recomend of partes(imprimir,acumulado); let indice = index">
+                            <div class="encima p-d-flex">
+                                <h3 class="titulo p-col p-as-start p-m-1">{{recomend.titulo}}</h3>
+                                <button pButton pRipple type="button" label="{{ 'CARTA.BOTON' | translate}} "
+                                    routerLink="/propiedad/{{recomend.id}}" [ngClass]="indice%5===0?'p-col-3':'p-col'"
+                                    class="p-as-end  p-ac-end p-m-1 p-button-text" icon="pi pi-angle-right"
+                                    iconPos="right"></button>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </swiper>
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<div class="container p-grid p-col-10  p-d-flex  p-jc-center p-ai-start ">
+    <div class="  margen p-col-12  p-lg-7 p-xl-7  p-grid p-d-flex p-flex-column p-jc-center  p-ai-start">
+        <div class="p-col-12  p-mb-2" [ngClass]="anchop? 'p-jc-center p-ai-center': '' "  >
+            <h2> {{'FORMPROPIEDAD.DATOSPUBLI' | translate}} </h2>
+        </div>
+        <div class="p-col-12    p-d-flex p-flex-column ">
+            <div class="p-grid textoInput p-mt-2">
+                <h4 class="p-mr-1 p-ml-1">{{'FORMPROPIEDAD.TIPOCLI' | translate}}</h4>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.TIPOTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+            </div>
+            <p-dropdown inputId="tipo" [options]="mistransacciones" placeholder="{{'FORMPROPIEDAD.ELIJA' | translate}}"
+                optionLabel="nombre" optionValue="valor" name="tipo" [(ngModel)]="propiedad.tipo"></p-dropdown>
+        </div>
+        <div class="p-col-12   p-d-flex p-flex-column">
+            <div class="p-grid textoInput">
+                <h4 class="p-mr-1 p-ml-1">{{'FORMPROPIEDAD.TITULOCLI' | translate}}</h4>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.TITULOTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+            </div>
+            <input type="text" pInputText name="titulo" [(ngModel)]="propiedad.titulo">
+        </div>
+        <div class="p-col-12   p-d-flex p-flex-column">
+            <h4 class="p-mr-1 p-mb-1">{{'FORMPROPIEDAD.ANTIGUEDAD' | translate}} <fa-icon [icon]="faQuestionCircle"
+                    pTooltip="{{'FORMPROPIEDAD.TITULOTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            </h4>
+
+            <div class="p-field-radiobutton p-mt-2">
+                <p-radioButton name="antigua" [value]='false' [(ngModel)]="antigua" inputId="city1"></p-radioButton>
+                <label for="city1">{{'FORMPROPIEDAD.ESTRENO' | translate}}</label>
+            </div>
+            <div class="p-field-radiobutton antiguedad">
+                <p-radioButton name="antigua" [value]='true' [(ngModel)]="antigua" inputId="city2"></p-radioButton>
+                <label for="city2" class="p-mr-2">{{'FORMPROPIEDAD.ANTIGUO' | translate}}</label>
+                <p-inputNumber [(ngModel)]="propiedad.antiguedad" [showButtons]="true" [disabled]='!antigua' min=1>
+                </p-inputNumber>
+            </div>
+        </div>
+        <div class="p-col-12    p-d-flex p-flex-column">
+            <div class="p-grid textoInput p-mt-2">
+                <h4 class="p-mr-1 p-ml-1">{{'FORMPROPIEDAD.DESCLI' | translate}}</h4>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.DESTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+            </div>
+            <textarea rows="5" cols="30" pInputTextarea name="descripcion"
+                [(ngModel)]="propiedad.descripcion"></textarea>
+        </div>
+        <div class="p-col-12  p-lg-8  p-xl-12  p-d-flex p-jc-between p-grid p-mt-2">
+
+            <button class=" p-col-12 p-md-4 p-lg-3 p-xl-3 p-button-danger p-shadow-3" pButton
+                label="{{'BOTONES.CANCELAR' | translate}}" routerLink="/cuenta/perfil">
+            </button>
+
+            <button class=" p-col-12 p-md-3 p-lg-3 p-xl-3 p-button-help p-shadow-3" pButton
+                label="{{'BOTONES.ATRAS' | translate}}" routerLink='/cuenta/nuevo/formulario'>
+            </button>
+            <button class="p-col-12  p-md-4 p-lg-3 p-xl-3 p-button-warning p-shadow-3" pButton
+                label="{{'BOTONES.SIGUIENTE' | translate}}" (click)="navegar(propiedad,antigua)">
+            </button>
+        </div>
+    </div>
+    <div class="  p-col   p-mt-4 p-shadow-3" style="background-color: rgb(255, 255, 255)" *ngIf="mostrar">
+        <img src="https://image.freepik.com/vector-gratis/construccion-infografias-informacion-mapas-carta-mundial-grafico-infochart-industrial_1284-44124.jpg"
+            alt="" width="100%" > 
+    </div>
+</div>

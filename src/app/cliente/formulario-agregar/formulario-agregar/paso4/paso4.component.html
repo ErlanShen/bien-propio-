@@ -1,0 +1,161 @@
+<div class="container p-grid p-nogutter">
+    <div class="p-col-12 p-lg-4 p-xl-4 p-mt-2 image" >
+        <img  class="imagen image" src="https://image.freepik.com/vector-gratis/construccion-infografias-informacion-mapas-carta-mundial-grafico-infochart-industrial_1284-44124.jpg"
+            alt="" width="100%" height="auto">
+    </div>
+    <div class="p-col-12 p-lg-8 p-xl-8 p-d-flex p-ai-center  p-grid p-flex-column">
+        <div class="p-col-12 p-lg-6 p-xl-6 p-d-flex p-jc-center p-mt-4 p-mb-4">
+            <h2>{{'FORMPROPIEDAD.DATOSINM' | translate}} </h2>
+        </div>
+        <div class=" p-col-12 p-d-flex p-jc-center p-ai-center  p-flex-wrap p-grid " >
+            <div class="p-field  p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="precio" class="p-mr-1">{{'FORMPROPIEDAD.PRECIOCLI' | translate}}
+                    {{intermediaria(propiedad.tipo)}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.PRECIOTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faDollarSign"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.precio" name="precio" [showButtons]="true" inputId="precio"
+                        mode="currency" currency="USD" [min]="0">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="alicuota" class="p-mr-1">{{'FORMPROPIEDAD.ALICUOTA' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.ALICUOTATIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faDollarSign"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.alicuota" name="alicuota" mode="currency" currency="USD"
+                        [showButtons]="true" inputId="alicuota" [min]="0">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="banios" class="p-mr-1">{{'FORMPROPIEDAD.BANIOSCLI' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.BANIOSTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faBath"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.banos" name="banos" mode="decimal" [showButtons]="true"
+                        inputId="banios" [min]="0" [max]="100">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="mediosBanos" class="p-mr-1">{{'FORMPROPIEDAD.BANIOSMED' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.BANIOSMEDTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faSink"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.mediosBanos" name="mediosBanos" mode="decimal"
+                        [showButtons]="true" inputId="mediosBanos" [min]="0" [max]="100">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="pisos" class="p-mr-1">{{'FORMPROPIEDAD.PISOSCLI' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.PISOSTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faGopuram"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.pisos" name="pisos" mode="decimal" [showButtons]="true"
+                        inputId="pisos" [min]="0" [max]="100">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="cuartos" class="p-mr-1">{{'FORMPROPIEDAD.CUARTOSCLI' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.CUARTOSTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faBed"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.cuartos" name="cuartos" mode="decimal" [showButtons]="true"
+                        inputId="cuartos" [min]="0" [max]="100">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="propietario" class="p-mr-1">{{'FORMPROPIEDAD.PROPCLI' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.PROPTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faUsers"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.propietarios" name="propietarios" mode="decimal"
+                        [showButtons]="true" inputId="propietario" [min]="0" [max]="100">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="metros" class="p-mr-1">{{'FORMPROPIEDAD.METROSCLI' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.METROTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faRulerCombined"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.metrosCuadrados" name="metrosCuadrados" mode="decimal"
+                        [showButtons]="true" inputId="metros" [min]="0">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="metrosConstruidos" class="p-mr-1">{{'FORMPROPIEDAD.METROSCONST' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.METROSCONSTTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faRuler"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.metrosConstruidos" name="metrosConstruidos" mode="decimal"
+                        [showButtons]="true" inputId="metrosConstruidos" [min]="0">
+                    </p-inputNumber>
+                </div>
+            </div>
+            <div class="p-field p-col-12  p-md-6  p-lg-6 p-xl-6 ">
+                <label for="metrosConstruidos" class="p-mr-1">{{'FORMPROPIEDAD.PARQUEADERO' | translate}}</label>
+                <fa-icon [icon]="faQuestionCircle" pTooltip="{{'FORMPROPIEDAD.PARQUEADEROTIP' | translate}}"
+                    style="color: rgb(0, 119, 255);"></fa-icon>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <fa-icon [icon]="faParking"></fa-icon>
+                    </span>
+                    <p-inputNumber [(ngModel)]="propiedad.parqueadero" name="parqueadero" mode="decimal"
+                        [showButtons]="true" inputId="parqueadero" [min]="0">
+                    </p-inputNumber>
+                </div>
+            </div>
+
+        </div>
+        <div class="p-col-12  p-lg-10 p-d-flex p-jc-center  p-jc-lg-between p-jc-xl-between p-grid p-mt-4 ">
+            <button class="p-col-10  p-md-2 p-lg-2  p-xl-2   p-button-danger p-shadow-3  p-d-flex p-jc-center margen"  pButton
+                label="{{'BOTONES.CANCELAR' | translate}}" routerLink="/cuenta/perfil">
+            </button>
+            <button class="p-col-10   p-md-2 p-lg-2  p-xl-2  p-button-help p-shadow-3 p-d-flex p-jc-center  margen" pButton label="{{'BOTONES.ATRAS' | translate}}"
+            (click)="navegar(propiedad,'/cuenta/nuevo/amenidades')">
+            </button>
+            <button class="p-col-10   p-md-2  p-lg-2  p-xl-2   p-button-info p-shadow-3 margen" pButton label="{{'BOTONES.BORRADOR' | translate}}"
+                (click)="guardarBorrador(propiedad)" routerLink="/cuenta/perfil">
+            </button>
+            <button class="p-col-10 p-md-2   p-lg-2  p-xl-2   p-button-warning p-shadow-3 margen" pButton
+            label="{{'BOTONES.PUBLICAR' | translate}}" (click)="guardar(propiedad)"></button>
+        </div>
+    </div>
+</div>
+<p-toast position="bottom-center"></p-toast>
+<ver-cargador></ver-cargador>

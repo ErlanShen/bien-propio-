@@ -1,0 +1,48 @@
+<div class="container" *ngIf="paginas">
+    <p-table [value]="paginas" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr p-d-flex>
+                <th id="activo" class="p-md-4">{{'ADMINPUBLICIDAD.ACTIVO' | translate}}</th>
+                <th id="titulo" class="p-md-4">{{'ADMINPAGINAS.TITULO' | translate}}</th>
+                <th id="subtitulo" class="p-md-4">{{'ADMINPAGINAS.SUBTITULO' | translate}}</th>
+                <th id="fechaPubicacion" class="p-md-4">{{'ADMINPAGINAS.FECHAPUBLICACION' | translate}}</th>
+                <th id="autor" class="p-md-4">{{'ADMINPAGINAS.AUTOR' | translate}}</th>
+                <th id="direccion" class="p-md-4">{{'ADMINPAGINAS.DIRECCION' | translate}}</th>
+                <th id="acciones" class="p-md-4">{{'ADMINPAGINAS.ACCIONES' | translate}}</th>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-page>
+            <tr [ngStyle]="{'background-color':  page.activo === false  ?  'rgba(163, 210, 241, 0.3)' : 'transparent'}">
+                <td>
+                    <p-inputSwitch [disabled]="desactivador(page.activo, encendidos) " [(ngModel)]="page.activo"  (onChange)="cambio(page, $event)"></p-inputSwitch>
+                </td>
+                <td>
+                    {{page.titulo}}
+                </td>
+                <td>
+                    {{page.subtitulo}}
+                </td>
+                <td>
+                    {{page.fechaP| date: 'dd/MMMM/yyyy'}}
+                </td>
+
+                <td>
+                    <!--<ng-container *ngIf="paginas.autor | async as autor" >
+                        {{autor.displayName}}
+                    </ng-container>-->
+                </td>
+                <td>
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-shadow-3 p-mr-4" routerLink="/admin/formPagina/{{page.id}}">
+                    </button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger  p-shadow-3" (click)="borrar(page)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

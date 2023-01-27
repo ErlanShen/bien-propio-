@@ -1,0 +1,50 @@
+.filtro-fijado {
+    left: 1px;
+    position: -webkit- sticky;
+    position: sticky;
+    top: -1px;
+}
+.nombre{
+    font-size: 18px;
+    color: rgb(75, 75, 75);
+}
+.tipo{
+    font-size: 12px;
+    margin-left: 0.4rem;
+}
+::ng-deep .busqueda .p-chip .p-chip-text {
+    line-height: 1.2;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    font-size: 12px;
+}
+::ng-deep .busqueda .p-chip {
+    background-color: #dee2e613;
+    padding: 0.2rem;
+    color: #ffffff;
+    border-radius: 16px;
+    font-size: 13px;
+    width: auto;
+    height: 1.4rem;
+    font-weight: bold;
+}
+::ng-deep .busqueda .p-inputgroup-addon {
+    background: #ffffff;
+    color: #6c757d;
+    padding: 0.0rem 0.0rem;
+    min-width: 2.357rem;
+}
+::ng-deep .busqueda .p-inputtext {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.5rem 0.5rem;
+    margin-bottom: 0.6rem;
+    //transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    //outline: 1px solid #ffffff;
+}

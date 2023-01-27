@@ -1,0 +1,44 @@
+<ng-template #noFotos>
+    <div class="p-justify-center">
+        <h3>No hay Fotos</h3>
+    </div>
+</ng-template>
+<div class="p-grid simulador" *ngIf="todasLasFotos && todasLasFotos.length>0 else noFotos">
+    <div class="p-col-12 p-sm-12 p-md-12 p-lg-12 p-mb-1">
+        <p-fileUpload name="myfile[]" chooseLabel="Seleccione" customUpload="true" #upL
+            (uploadHandler)="uploadPhoto(misFotos)" uploadLabel="Cargar" cancelLabel="Cancelar" multiple="multiple"
+            accept="image/*" (onSelect)="ver($event)"></p-fileUpload>
+    </div>
+
+    <div class="p-col-6 p-sm-6 p-md-4 p-lg-3"
+        *ngFor="let item of cortadorArreglo(todasLasFotos, filas,(posicion));let corrida=index">
+        <div class="cardImage p-shadow-5" (mouseenter)="mouseEnter(corrida)" (mouseleave)="mouseLeave(copiado)"
+        [ngStyle]="{'background-image':'url('+item.archivo+')'}" >
+        
+
+            <div class="encima" (change)="invisible=!invisible">
+                <div class="p-d-flex p-flex-column p-jc-center"
+                    [ngClass]="invisible===true && corrida===seleccionado?'':'invisible'">
+                    <div class="p-d-flex p-flex-column p-ai-center p-as-center">
+                        <p class="p-m-4">{{item.fecha.toDate()|date:'fullDate':'es-EC'}}</p>
+                        <button pRipple pButton icon="pi pi-link"
+                            class="botones p-m-1 p-button-rounded p-button-warning" #Copia
+                            (click)="copyUrlPhoto(item.archivo, corrida,seleccionado)" tooltipPosition="right"
+                            pTooltip="{{miMensaje}}" hideDelay="1000">
+                        </button>
+                        <button pButton pRipple type="button" icon="pi pi-trash"
+                            class="botones p-button-rounded p-button-danger p-m-1" (click)="deletePhoto(item)">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-sm-12 p-md-12 p-lg-12 p-xl-12" *ngIf="todasLasFotos">
+        <p-paginator [first]="posicion" [rows]="filas" [totalRecords]="todasLasFotos.length"
+            (onPageChange)="onPageChange($event)" [showJumpToPageDropdown]="true" [showPageLinks]="true">
+        </p-paginator>
+    </div>
+
+</div>

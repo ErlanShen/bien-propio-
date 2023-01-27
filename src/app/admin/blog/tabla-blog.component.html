@@ -1,0 +1,58 @@
+<div class="container" *ngIf="blogs">
+    <p-table [value]="blogs" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr p-d-flex>
+                <th id="acciones" class="p-md-4">{{'ADMINBLOGS.DESTACADOS' | translate}}</th>
+                <th id="titulo" class="p-md-4">{{'ADMINBLOGS.TITULO' | translate}}</th>
+                <th id="titulo" class="p-md-4">{{'ADMINBLOGS.SUBTITULO' | translate}}</th>
+                <th id="imagen" class="p-md-4">{{'ADMINBLOGS.FECHACREACION' | translate}}</th>
+                <th id="acciones" class="p-md-4">{{'ADMINBLOGS.FECHAPUBLICACION' | translate}}</th>
+                <th id="acciones" class="p-md-4">{{'ADMINBLOGS.AUTOR' | translate}}</th>
+                <th id="acciones" class="p-md-4">{{'ADMINBLOGS.CATEGORIAS' | translate}}</th>
+                <th id="acciones" class="p-md-4">{{'ADMINBLOGS.ACCIONES' | translate}}</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-blogs>
+            <tr>
+                <td>
+                    <p-inputSwitch [disabled]="desactivador(blogs.estado, encendidos)" [(ngModel)]="blogs.estado" (onChange)="cambio(blogs, $event)"></p-inputSwitch>
+                </td>
+                <td class="titulo">
+                    {{blogs.titulo}}
+                </td>
+                <td>
+                    {{blogs.subtitulo}}
+                </td>
+
+                <td>
+                    {{blogs.fechaCreacion | date: 'dd/MMMM/yyyy'}}
+                </td>
+                <td>
+                    {{blogs.fechaPublicacion | date: 'dd/MMMM/yyyy'}}
+                </td>
+
+                <td>
+                    <ng-container *ngIf="blogs.autor | async as autor">
+                        <div>
+                            {{autor.displayName}}
+                        </div>
+                    </ng-container>
+                </td>
+
+                <td>
+                    <div *ngIf="blogs.categorias | async as categorias">
+                        <div *ngFor="let item of categorias">
+                            <span *ngIf="item">- {{item.nombre}}</span>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-shadow-3 p-mr-4" routerLink="/admin/formBlog/{{blogs.id}}">
+                    </button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" (click)="borrar(blogs.id)" class="p-button-rounded p-button-danger  p-shadow-3">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

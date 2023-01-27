@@ -1,0 +1,49 @@
+<div class="container p-grid p-d-flex" *ngIf="propiedadesaMostrarP && propiedadesaMostrarF">
+    <div class="p-col-12  p-ai-md-center p-ai-sm-center p-grid" *ngIf="usuarios">      
+        <div class="p-col-12  p-lg-12 p-xl-12 p-ai-md-center p-ai-sm-center">
+            <div class="p-col-12" *ngIf="propiedadesaMostrarP.length>0">
+                <h1 >{{'CLIENTE.TITULOS.PROPIEDADESP'|translate}} ({{propiedadesaMostrarP.length}})</h1>
+            </div>
+            <app-tarjeta-propiedad [propiedades]="propiedadesaMostrarP"
+            [paginator]="true" [cantidad]="cantidad" *ngIf="propiedadesaMostrarP.length>0; else noexiste">
+            </app-tarjeta-propiedad>
+            <ng-template #noexiste>
+                <div class="p-col-12 ">
+                    <h1>{{'CLIENTE.TITULOS.PROPIEDADESP'|translate}}</h1>
+                    <h2>{{'CLIENTE.TITULOS.INEXISTENTEP'|translate}}</h2>
+                </div>
+            </ng-template>
+
+            <div class="p-col-12 " *ngIf="propiedadesaMostrarF.length>0">
+                <h1>{{'CLIENTE.TITULOS.PROPIEDADESF'|translate}} ({{propiedadesaMostrarF.length}}) </h1>
+            </div>
+            <app-tarjeta-propiedad [propiedades]="propiedadesaMostrarF"
+            [paginator]="true"  [cantidad]="cantidad" *ngIf="propiedadesaMostrarF.length>0; else noexistef">
+            </app-tarjeta-propiedad>
+            <ng-template #noexistef>
+                <div class="p-col-12">
+                    <h1>{{'CLIENTE.TITULOS.PROPIEDADESF'|translate}}</h1>
+                    <h2>{{'CLIENTE.TITULOS.INEXISTENTEF'|translate}}</h2>
+                </div>
+            </ng-template>
+
+            <div class="p-col-12 " *ngIf="propiedadesaMostrarB.length>0">
+                <h1>{{'CLIENTE.TITULOS.PROPIEDADESB'|translate}} ({{propiedadesaMostrarB.length}})</h1>
+            </div>
+            <app-tarjeta-propiedad [propiedades]="propiedadesaMostrarB"
+            [paginator]="true" [cantidad]="cantidad" *ngIf="propiedadesaMostrarB.length>0; else noexisteb">
+            </app-tarjeta-propiedad>
+            <ng-template #noexisteb>
+                <div class="p-col-12 ">
+                    <h1>{{'CLIENTE.TITULOS.PROPIEDADESB'|translate}}</h1>
+                    <h2>{{'CLIENTE.TITULOS.INEXISTENTEB'|translate}}</h2>
+                </div>
+            </ng-template>
+
+        </div>
+
+
+
+    </div>
+
+</div>

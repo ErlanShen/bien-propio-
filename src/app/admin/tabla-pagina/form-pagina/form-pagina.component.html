@@ -1,0 +1,61 @@
+<p-toast position="top-center" key="c">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="infoMensaje p-text-center">
+                <h4>{{message.summary}}</h4>
+            </div>
+            <div class="p-d-flex p-jc-center">
+                <button class="boton" type="button" pButton (click)="aceptar(pagina,id)" label="Guardar"></button>
+            </div>
+        </div>
+    </ng-template>
+
+</p-toast>
+
+<div class="card p-grid p-nogutter p-shadow-24" *ngIf="pagina">
+    <p-card class="container p-col p-fluid">
+        <h2 class="p-d-flex p-jc-center p-mb-3">Pagina</h2>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col-12 p-md-6">
+                <div class="p-field p-col">
+                    <label for="titulo">Título</label>
+                    <input  type="text" #nombre="ngModel" [(ngModel)]="pagina.titulo" pInputText name="titulo" placeholder="Cercanos a ti" required>
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="imagen" class="p-mb-2">Subtítulo</label>
+                <input type="text" #subtitulo="ngModel" [(ngModel)]="pagina.subtitulo" name="subtitulo" pInputText placeholder="https://www.ejemplo.jpg">
+            </div>
+            <div class="p-field p-col-12 p-md-6">
+                <label for="imagen" class="p-mb-2">Activo</label>
+                <p-dropdown [options]="activo" [(ngModel)]="pagina.activo" optionLabel="nombre" optionValue="valor" > </p-dropdown>
+            </div>
+
+            <div class="p-field p-col">
+                <label class="p-mb-2" for="fecha">Fecha Publicación</label>
+                <div class="p-d-flex p-col">
+                    <p-calendar #fechaPublicacion="ngModel" [(ngModel)]="pagina.fechaP" [showIcon]="true" name="fechaP" [showButtonBar]="true" [touchUI]="true" [minDate]="fechaActual" required>
+                    </p-calendar>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12">
+                <div class="p-field p-col">
+                    <label for="autor" class="p-mb-2">Contenido</label>
+                    <div class="p-field p-col-4">
+                        <app-selector-fotos *ngIf="pagina" (checkados)="verImagenes2($event)"></app-selector-fotos>
+                    </div>
+                    <quill-editor #Editor (onEditorCreated)="rev($event)" (onContentChanged)="onContentChanged($event)" [modules]="config" name="contenido" [(ngModel)]="pagina.contenido" [sanitize]="true">
+                    </quill-editor>
+                </div>
+            </div>
+
+            <div class="p-field p-col-12 p-d-flex p-jc-center">
+                <div class="p-col-4 p-mt-3 p-d-flex">
+                    <button pButton type="submit" label="Guardar" (click)="guardar(pagina, id)" class="p-mr-4"><i class="pi pi-save"></i></button>
+                    <button pButton type="button" label="Cancelar" routerLink="/admin/pagina" class="p-button-danger"><i class="pi pi-times"></i></button>
+                </div>
+            </div>
+        </div>
+    </p-card>
+</div>

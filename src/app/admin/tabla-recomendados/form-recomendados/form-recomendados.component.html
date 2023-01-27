@@ -1,0 +1,49 @@
+<div class="container  p-d-flex p-jc-center" *ngIf="recomendado">
+    <p-card class="container p-col-6 p-fluid ">
+        <form #formBlog="ngForm">
+            <h2 class="p-d-flex p-jc-center p-col-12 p-mb-3">Recomendados</h2>
+            <div class="p-fluid p-formgrid p-grid ">
+                <div class="p-field p-flex p-col-12 ">
+                    <label for="titulo">Título</label>
+                    <input type="text" pInputText name="titulo" [(ngModel)]="recomendado.titulo" placeholder="Ej. Por pisos" required>
+                </div>
+                <div class="p-field p-flex p-col-4 ">
+                    <label for="busqueda">Búsqueda</label>
+                    <p-dropdown name="busqueda" [options]="propiedades" [(ngModel)]="recomendado.expresion[0]" optionLabel="nombre" optionValue="nombre" placeholder="Buscar" required>
+                    </p-dropdown>
+                </div>
+                <div class="p-field p-flex p-col-4 ">
+                    <label for="expresion">Expresión</label>
+                    <p-dropdown name="expresion" [options]="expresiones" [(ngModel)]="recomendado.expresion[1]" optionLabel="nombre" optionValue="expr" placeholder="Selecciona una expresión">
+                    </p-dropdown>
+                </div>
+                <div class="p-field  p-flex p-col-4 ">
+                    <label for="cantidad">Cantidad</label>
+                    <input type="text" pInputText name="cantidad" (change)="encontrados(recomendado.expresion[0], recomendado.expresion[1], recomendado.expresion[2])" [(ngModel)]="recomendado.expresion[2]" placeholder="Ej. 20" required>
+                </div>
+                <div class="p-field p-col-12" *ngIf="resultPropiedad.length > 0">
+                    <label for="propiedad">Propiedades Encontradas</label>
+                    <p-scrollPanel [style]="{width: '100%', height: '150px'}" ngDefaultControl name="propiedades" [(ngModel)]="recomendado.propiedades">
+                        <div class="resultadoPropiedades p-d-flex  p-ai-center" *ngFor="let item of resultPropiedad">
+                            <img src="{{item.imgDestcada}}" alt="">{{item.titulo}}
+                        </div>
+                    </p-scrollPanel>
+                </div>
+                <div class="p-field p-col-12 ">
+                    <label for="activo">Activo</label>
+                    <p-dropdown name="activo" [options]="activo" optionLabel="label" optionValue="value" [(ngModel)]="recomendado.activo">
+                    </p-dropdown>
+                </div>
+                <div class="p-field p-col-12 ">
+                    <label for="orden">Orden</label>
+                    <input type="text" pInputText [(ngModel)]="recomendado.orden" name="orden" placeholder="Cercanos a ti" required>
+                </div>
+                <div class="p-field p-col-12   p-d-flex p-jc-center p-mt-3 ">
+                    <button pButton type="button" label="Guardar" (click)="guardar(recomendado, resultPropiedad)" class="p-mr-4"><i class="pi pi-save"></i></button>
+                    <button pButton type="button" label="Cancelar" routerLink="/admin/recomendados" class="p-button-danger"><i class="pi pi-times"></i></button>
+                </div>
+
+            </div>
+        </form>
+    </p-card>
+</div>

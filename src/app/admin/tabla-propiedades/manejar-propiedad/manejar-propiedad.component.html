@@ -1,0 +1,279 @@
+<div class="p-d-flex p-jc-center contenedor">
+    <div class="p-fluid p-grid formulario">
+        <p-card class="p-formgrid p-col-12 p-grid" header="Propiedad">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="tipo">{{'FORMPROPIEDAD.TIPO' | translate}}</label>
+            <p-dropdown inputId="tipo" [options]="mistransacciones" [(ngModel)]="agregarPropiedad.tipo"
+                placeholder="Seleccione un tipo" optionLabel="nombre" optionValue="valor"></p-dropdown>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+            <label for="titulo">{{'FORMPROPIEDAD.TITULO' | translate}}</label>
+            <input name="titulo" #titulo="ngModel" [(ngModel)]="agregarPropiedad.titulo" id="titulo" type="text"
+                placeholder="Titulo" pInputText>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+            <label for="imgDestcada" class="p-mb-4">{{'FORMPROPIEDAD.IMGDESTACADA' | translate}}</label>
+            <app-selector-fotos *ngIf="agregarPropiedad" [fotoSelec]="editando?[agregarPropiedad.imgDestcada]:[]" (checkados)="verImagen($event)" ></app-selector-fotos>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+            <label for="imgDestcada" class="p-mb-4">{{'FORMPROPIEDAD.GALERIA' | translate}}</label>
+            <app-selector-fotos *ngIf="agregarPropiedad" [multiple]="true" [fotoSelec]="editando?agregarPropiedad.galeria:[]" (checkados)="verImagenes($event)" ></app-selector-fotos>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+            <label for="descripcion">{{'FORMPROPIEDAD.DESCRIPCION' | translate}}</label>
+            <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="agregarPropiedad.descripcion"
+                id="descripcion" placeholder="Descripcion" type="text" rows="4" pInputTextarea></textarea>
+        </div>
+        <div class="p-field p-col-12 p-md-12">
+            <p-divider></p-divider>
+            <formDirect *ngIf="mapa" [dirProp]="agregarPropiedad" (enviarDir)="verDireccion($event)"></formDirect>
+            <p-divider></p-divider>
+        </div>
+       
+        <div class="p-field p-md-12 p-d-flex p-flex-row p-flex-wrap">
+            <div class="p-field p-col-12  p-md-4 ">
+                <label for="precio">{{'FORMPROPIEDAD.PRECIO' | translate}}</label>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><fa-icon [icon]="faDollarSign"></fa-icon></span>
+                    <p-inputNumber name="precio" #precio="ngModel" [(ngModel)]="agregarPropiedad.precio"
+                        [showButtons]="true" inputId="precio" mode="currency" currency="USD" [min]="0">
+                    </p-inputNumber>
+                </div>
+                <div class="p-field p-col-12">
+                    <label for="planos">{{'FORMPROPIEDAD.FORMPLANOS' | translate}}</label>
+                    <app-selector-fotos *ngIf="agregarPropiedad" [multiple]="true"
+                        [fotoSelec]="editando?agregarPropiedad.planos:[]" (checkados)="verPlanos($event)">
+                    </app-selector-fotos>
+                </div>
+                <div class="p-field p-col-12 ">
+                    <label for="Video">{{'FORMPROPIEDAD.FORMVIDEO' | translate}}</label>
+                    <input name="video" #titulo="ngModel" [(ngModel)]="agregarPropiedad.video" id="video" type="text"
+                    placeholder="Link del video" pInputText>
+                    <div class="p-grid textoInput p-col-10 p-mt-2" *ngIf="agregarPropiedad.video">
+                        <h4 class="p-mr-1 p-ml-1">{{'FORMPROPIEDAD.VISTAPREVIAVIDEO' | translate}} </h4>
+                    </div>
+                    <iframe width="90%" height="300rem" [src]='transformadorURL(agregarPropiedad.video) | seguro:"resourceUrl"' 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen *ngIf="agregarPropiedad.video"></iframe>
+                </div>
+                <div class="p-field p-col-12">
+                    <label for="Matterport">{{'FORMPROPIEDAD.FORMMATTERPORT' | translate}}</label>
+                    <input name="matterport" #matterport="ngModel" [(ngModel)]="agregarPropiedad.matterport" id="matterport" type="text"
+                    placeholder="Link del matterport" pInputText>
+                    <div class="p-grid textoInput p-col-10 p-mt-2" *ngIf="agregarPropiedad.matterport">
+                        <h4 class="p-mr-1 p-ml-1">{{'FORMPROPIEDAD.VISTAPREVIAMATTERPORT' | translate}} </h4>
+                    </div>
+                    <iframe width="90%" height="300rem" [src]='agregarPropiedad.matterport | seguro:"resourceUrl"' 
+                 allowfullscreen allow="xr-spatial-tracking"
+                 title="matterport" *ngIf="agregarPropiedad.matterport"></iframe>
+                </div>
+                
+                <div class="p-field p-col-12 p-md-12">
+                    <p-divider></p-divider>
+                    <formDirect *ngIf="mapa" [dirProp]="agregarPropiedad" (enviarDir)="verDireccion($event)">
+                    </formDirect>
+                    <p-divider></p-divider>
+                </div>
+
+               
+            </div>
+            <div class="p-col-6 p-ml-3" >
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="tipo">{{'FORMPROPIEDAD.TIPO' | translate}}</label>
+                    <p-dropdown inputId="tipo" [options]="mistransacciones" [(ngModel)]="agregarPropiedad.tipo"
+                        placeholder="Seleccione un tipo" optionLabel="nombre" optionValue="valor"></p-dropdown>
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                    <label for="titulo">{{'FORMPROPIEDAD.TITULO' | translate}}</label>
+                    <input name="titulo" #titulo="ngModel" [(ngModel)]="agregarPropiedad.titulo" id="titulo" type="text"
+                        placeholder="Titulo" pInputText>
+                </div>
+                <div class="p-col-4 p-d-flex p-flex-column">
+                    <h4 class="p-mr-1 p-mb-1">{{'FORMPROPIEDAD.ANTIGUEDAD' | translate}}</h4>
+
+                    <div class="p-field-radiobutton p-mt-2">
+                        <p-radioButton name="antigua" [value]='false' [(ngModel)]="antigua" inputId="city1">
+                        </p-radioButton>
+                        <label for="city1">{{'FORMPROPIEDAD.ESTRENO' | translate}}</label>
+                    </div>
+                    <div class="p-field-radiobutton antiguedad">
+                        <p-radioButton name="antigua" [value]='true' [(ngModel)]="antigua" inputId="city2">
+                        </p-radioButton>
+                        <label for="city2" class="p-mr-2">{{'FORMPROPIEDAD.ANTIGUO' | translate}}</label>
+                        <p-inputNumber [(ngModel)]="agregarPropiedad.antiguedad" [showButtons]="true"
+                            [disabled]='!antigua' min=1>
+                        </p-inputNumber>
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                    <label for="descripcion">{{'FORMPROPIEDAD.DESCRIPCION' | translate}}</label>
+                    <textarea name="descripcion" #descripcion="ngModel" [(ngModel)]="agregarPropiedad.descripcion"
+                        id="descripcion" placeholder="Descripcion" type="text" rows="4" pInputTextarea></textarea>
+                </div>
+                <label for="metrosConstruidos" class="p-mr-1">{{'FORMPROPIEDAD.AMENIDADESPUBLI' | translate}}</label>
+                <div class="p-col-12 p-d-flex p-d-flex-column p-flex-wrap">
+                    <div class="p-col-12">
+                        <h4>{{'FORMPROPIEDAD.SELECIONESERVICIOS' | translate}}</h4>
+                    </div>
+                    <div class="p-col-4 p-field-checkbox" *ngFor="let item of agregarPropiedad.servicios | keyvalue">
+                        <div class="p-field-radiobutton" >
+                            <p-checkbox [id]='item.key' name="servicios" binary="true" [inputId]="item.key" [(ngModel)]="agregarPropiedad.servicios[item.key]"
+                           ></p-checkbox>
+                            <label [for]="item.key">{{'FORMPROPIEDAD.'+item.key.toUpperCase() | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-d-flex p-d-flex-column p-flex-wrap" >
+                    <div class="p-col-12">
+                        <h4>{{'FORMPROPIEDAD.SELECTCARACTERISTICASGENERALES' | translate}}</h4>
+                    </div>
+                    <div class="p-col-4 p-field-checkbox" *ngFor="let item of agregarPropiedad.caracteristicasG | keyvalue">
+                        <div class="p-field-radiobutton" >
+                             <p-checkbox [id]="item.key"  [name]="item.key" [(ngModel)]="agregarPropiedad.caracteristicasG[item.key]" [binary]="true" [inputId]="item.key"
+                            ></p-checkbox> 
+                            <label for="city1">{{'FORMPROPIEDAD.'+item.key.toUpperCase() | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-10 p-d-flex p-d-flex-column p-flex-wrap" >
+                    <div class="p-col-12">
+                        <h4>{{'FORMPROPIEDAD.SELECTCARACTERISTICASEXTERIORES' | translate}}</h4>
+                    </div>
+                    <div class="p-col-4 p-field-checkbox" *ngFor="let item of agregarPropiedad.exteriores | keyvalue">
+                        <div class="p-field-radiobutton" >
+                            <p-checkbox [id]="item.exteriores" name="exteriores" [(ngModel)]="agregarPropiedad.exteriores[item.key]" binary="true" [inputId]="item.key"
+                           ></p-checkbox>
+                            <label for="city1">{{'FORMPROPIEDAD.'+item.key.toUpperCase() | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-col-12 p-d-flex p-d-flex-column p-flex-wrap" >
+                    <div class="p-col-12">
+                        <h4>{{'FORMPROPIEDAD.SELECIONEAMBIENTES' | translate}}</h4>
+                    </div>
+                    <div class="p-col-4 p-field-checkbox" *ngFor="let item of agregarPropiedad.ambientes | keyvalue">
+                        <div class="p-field-radiobutton" >
+                            <p-checkbox [id]="item.key" name="ambientes" [(ngModel)]="agregarPropiedad.ambientes[item.key]" binary="true" [inputId]="item.key"
+                           ></p-checkbox>
+                            <label for="city1">{{'FORMPROPIEDAD.'+item.key.toUpperCase() | translate}}</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-field p-md-12 p-d-flex p-flex-row p-flex-wrap">
+                    <label class="p-col-10">{{'FORMPROPIEDAD.DETALLES' | translate}}</label>
+                    <div class="p-field p-col-12  p-md-4 ">
+                        <label for="precio">{{'FORMPROPIEDAD.PRECIO' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faDollarSign"></fa-icon>
+                            </span>
+                            <p-inputNumber name="precio" #precio="ngModel" [(ngModel)]="agregarPropiedad.precio"
+                                [showButtons]="true" inputId="precio" mode="currency" currency="USD" [min]="0">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12  p-md-4 ">
+                        <label for="alicuota" class="p-mr-1">{{'FORMPROPIEDAD.ALICUATA' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faDollarSign"></fa-icon>
+                            </span>
+                            <p-inputNumber [(ngModel)]="agregarPropiedad.alicuota" name="alicuota" mode="currency"
+                                currency="USD" [showButtons]="true" inputId="alicuota" [min]="0">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="banios">{{'FORMPROPIEDAD.BANIOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faBath"></fa-icon>
+                            </span>
+                            <p-inputNumber name="banios" #banios="ngModel" [(ngModel)]="agregarPropiedad.banos"
+                                mode="decimal" [showButtons]="true" inputId="banios" [min]="0" [max]="100">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="mediosBanos" class="p-mr-1">{{'FORMPROPIEDAD.BANIOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faSink"></fa-icon>
+                            </span>
+                            <p-inputNumber [(ngModel)]="agregarPropiedad.mediosBanos" name="mediosBanos" mode="decimal"
+                                [showButtons]="true" inputId="mediosBanos" [min]="0" [max]="100">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="pisos">{{'FORMPROPIEDAD.PISOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faGopuram"></fa-icon>
+                            </span>
+                            <p-inputNumber name="pisos" #pisos="ngModel" [(ngModel)]="agregarPropiedad.pisos"
+                                mode="decimal" [showButtons]="true" inputId="pisos" [min]="0" [max]="100">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="cuartos">{{'FORMPROPIEDAD.CUARTOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faBed"></fa-icon>
+                            </span>
+                            <p-inputNumber name="cuartos" #cuartos="ngModel" [(ngModel)]="agregarPropiedad.cuartos"
+                                mode="decimal" [showButtons]="true" inputId="cuartos" [min]="0" [max]="100">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="propietario">{{'FORMPROPIEDAD.PROPIETARIOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faUsers"></fa-icon>
+                            </span>
+                            <p-inputNumber name="propietario" #propietario="ngModel"
+                                [(ngModel)]="agregarPropiedad.propietarios" mode="decimal" [showButtons]="true"
+                                inputId="propietario" [min]="0" [max]="100">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="metros">{{'FORMPROPIEDAD.METROS2' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faRulerCombined"></fa-icon>
+                            </span>
+                            <p-inputNumber name="metros" #metros="ngModel"
+                                [(ngModel)]="agregarPropiedad.metrosCuadrados" mode="decimal" [showButtons]="true"
+                                inputId="metros" [min]="0">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-field p-col-12 p-md-4">
+                        <label for="metrosConstruidos" class="p-mr-1">{{'FORMPROPIEDAD.MEDIOSBANIOS' | translate}}</label>
+                        <div class="p-inputgroup">
+                            <span class="p-inputgroup-addon">
+                                <fa-icon [icon]="faRuler"></fa-icon>
+                            </span>
+                            <p-inputNumber [(ngModel)]="agregarPropiedad.metrosConstruidos" name="metrosConstruidos"
+                                mode="decimal" [showButtons]="true" inputId="metrosConstruidos" [min]="0">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+            <div class="p-d-flex p-jc-center p-col-6">
+                <button pButton pRipple type="button" [label]="'BOTONES.GUARDAR' | translate" class="p-button-info p-m-1 p-shadow-3"
+                    (click)="guardar(agregarPropiedad, antigua)" icon="pi pi-save" iconPos="right" [disabled]="!agregarPropiedad.direccion.callePrincipal"></button>
+                <button class="p-mr-2 " pButton pRipple type="button" [label]="'BOTONES.CANCELAR' | translate"
+                    class="p-button-danger p-m-1 p-shadow-3" (click)="cancelar()" icon="pi pi-times" iconPos="right"></button>
+            </div>
+           </div>
+        
+
+        </p-card>
+    </div>

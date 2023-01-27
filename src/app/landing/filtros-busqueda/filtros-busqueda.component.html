@@ -1,0 +1,215 @@
+<div class="p-d-flex p-jc-center" #filtro>
+    <div class="p-shadow-5 p-m-2" style="width: 25%; height: 100%;margin: 1px;"
+        [ngClass]="fijado ? 'filtro-fijado' : '' ">
+
+        <p-tabView #tamanio>
+            <p-tabPanel header="{{'MENU.COMPRA' | translate}}">
+                <div class="p-d-flex p-flex-column">
+                    <div class="p-d-flex p-jc-between">
+                        <b class="p-mb-1">{{'FORMPROPIEDAD.UBICACION' | translate}}</b>
+                        <b class="p-mb-1 p-ac-end ">Buscar en listado <i class="pi pi-search"></i></b>
+                    </div>
+                    <div class="p-fluid busqueda p-input">
+                        <div class="p-inputgroup buscar">
+                            <p-autoComplete (completeMethod)="search($event)" [suggestions]="results"
+                                [(ngModel)]="resultadoSeleccionado" [dropdown]="false" field="nombre">
+                                <ng-template let-results pTemplate="item" class="p-d-flex p-flex-column">
+                                    <div class="p-d-flex nombre ">{{results.nombre}}
+                                        <p-chip class="tipo p-chip p-shadow-1"
+                                            [ngStyle]="{'background-color':results.color}">
+                                            {{results.tipo}}
+                                        </p-chip>
+                                    </div>
+                                </ng-template>
+                            </p-autoComplete>
+                        </div>
+                    </div>
+                    <div class="p-d-flex" style="width: 100%; background-color: rgb(46, 35, 201); height: 200px;">
+                        mapa
+                    </div>
+                    <div class="p-d-flex p-flex-column">
+                        <b class="p-mb-1 p-mt-1">{{'FORMPROPIEDAD.TIPO' | translate}}</b>
+                        {{bTipo}}
+                        <div class="p-fluid">
+                            <p-dropdown inputId="tipo" [options]="mistransacciones" placeholder="Seleccione un tipo"
+                                optionLabel="nombre" optionValue="valor" [(ngModel)]="bTipo" (onChange)="nuevoFiltro(propiedades,$event,0)"></p-dropdown>
+                        </div>
+
+                    </div>
+                    <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.CUARTOS' | translate}}</b>
+                    <div class="p-d-flex p-jc-between">
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber [(ngModel)]="cantidadHab.min" mode="decimal" [showButtons]="true"
+                                inputId="minmax-buttons" [min]="0" (onInput)="nuevoFiltro(propiedades,cantidadHab,1,cuartos)">
+                            </p-inputNumber>
+                        </div>
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber #cuartos [(ngModel)]="cantidadHab.max" mode="decimal" [showButtons]="true"
+                                inputId="minmax-buttons" [min]="cantidadHab.min" (onInput)="nuevoFiltro(propiedades,cantidadHab,1)">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.PISOS' | translate}}</b>
+                    <div class="p-d-flex p-jc-between">
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber [(ngModel)]="pisos.min" mode="decimal" [showButtons]="true"
+                                inputId="minmax-buttons" [min]="0" (onInput)="cambio($event,mp)">
+                            </p-inputNumber>
+                        </div>
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber #mp [(ngModel)]="pisos.max" mode="decimal" [showButtons]="true"
+                                inputId="minmax-buttons" [min]="pisos.min">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <div class="p-d-flex p-flex-column">
+                        <b class="p-mb-1">{{'FORMPROPIEDAD.PRECIO' | translate}}
+                        </b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber mode="currency" currency="USD" locale="en-US" placeholder="Min"
+                                    [(ngModel)]="precio.min" [min]="0" (onInput)="cambio($event,mPr)"></p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #mPr mode="currency" currency="USD" locale="en-US" placeholder="Max"
+                                    [(ngModel)]="precio.max" [min]="precio.min"></p-inputNumber>
+                            </div>
+                        </div>
+
+                    </div>
+                    <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.METROSC' | translate}}</b>
+                    <div class="p-d-flex p-jc-between">
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber [(ngModel)]="metrosC.min" inputId="minmax"
+                                suffix=" {{'FORMPROPIEDAD.METROS2' | translate}}" mode="decimal" [min]="0"
+                                (onInput)="cambio($event,mMconstr)">
+                            </p-inputNumber>
+                        </div>
+                        <div class="p-fluid" style="width: 49%;">
+                            <p-inputNumber #mMconstr [(ngModel)]="metrosC.max" inputId="minmax"
+                                suffix=" {{'FORMPROPIEDAD.METROS2' | translate}}" mode="decimal" [min]="metrosC.min">
+                            </p-inputNumber>
+                        </div>
+                    </div>
+                    <!-- <div class="p-d-flex p-jc-between">
+                        <b>Otros filtros aplicados</b>
+                        <b>Limpiar <i class="pi pi-times-circle"></i></b>
+                    </div> -->
+                    
+                    <!-- ocultar mas filtros -->
+                    <p-checkbox class="p-mb-1 p-mt-2" (click)="val2 = !val2" label="Ver mas filtros"></p-checkbox>
+                    <ng-container *ngIf="val2">
+                        <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.METROS2' | translate}}</b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber [(ngModel)]="metrosC2.min" inputId="minmax"
+                                    suffix=" {{'FORMPROPIEDAD.METROS2' | translate}}" mode="decimal" [min]="0"
+                                    (onInput)="cambio($event,mmc)">
+                                </p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #mmc [(ngModel)]="metrosC2.max" inputId="minmax"
+                                    suffix=" {{'FORMPROPIEDAD.METROS2' | translate}}" mode="decimal"
+                                    [min]="metrosC2.min">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <div class="p-d-flex p-flex-column">
+                            <b class="p-mb-1">{{'FORMPROPIEDAD.ALICUOTA' | translate}}
+                            </b>
+                            <div class="p-d-flex p-jc-between">
+                                <div class="p-fluid" style="width: 49%;">
+                                    <p-inputNumber mode="currency" currency="USD" locale="en-US" placeholder="Min"
+                                        [(ngModel)]="precioA.min" [min]="0" (onInput)="cambio($event,mAl)">
+                                    </p-inputNumber>
+                                </div>
+                                <div class="p-fluid" style="width: 49%;">
+                                    <p-inputNumber #mAl mode="currency" currency="USD" locale="en-US" placeholder="Max"
+                                        [(ngModel)]="precioA.max" [min]="precioA.min"></p-inputNumber>
+                                </div>
+                            </div>
+                        </div>
+
+                        <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.PROPIETARIOS' | translate}}</b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber [(ngModel)]="cantidadPropi.min" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="0" (onInput)="cambio($event,propi)">
+                                </p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #propi [(ngModel)]="cantidadPropi.max" mode="decimal"
+                                    [showButtons]="true" inputId="minmax-buttons" [min]="cantidadPropi.min">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+
+                        <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.BANIOS' | translate}}</b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber [(ngModel)]="banios.min" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="0" (onInput)="cambio($event,mb)">
+                                </p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #mb [(ngModel)]="banios.max" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="banios.min">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.BANIOSM' | translate}}</b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber [(ngModel)]="baniosm.min" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="0" (onInput)="cambio($event,mbm)">
+                                </p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #mbm [(ngModel)]="baniosm.max" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="baniosm.min">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <b class="p-mb-1 p-d-flex">{{'FORMPROPIEDAD.PARQ' | translate}}</b>
+                        <div class="p-d-flex p-jc-between">
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber [(ngModel)]="numParq.min" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="0" (onInput)="cambio($event,parq)">
+                                </p-inputNumber>
+                            </div>
+                            <div class="p-fluid" style="width: 49%;">
+                                <p-inputNumber #parq [(ngModel)]="numParq.max" mode="decimal" [showButtons]="true"
+                                    inputId="minmax-buttons" [min]="numParq.min">
+                                </p-inputNumber>
+                            </div>
+                        </div>
+                        <b class="p-mb-1 p-d-flex">Servicios</b>
+                        <div class="p-fluid">
+                            <div class="" style="width: 100%;">
+                                <p-multiSelect [options]="groupedService" [group]="true" [(ngModel)]="selectedServiceGroup" defaultLabel="Select a City" scrollHeight="250px" display="chip">
+                                    <ng-template let-group pTemplate="group">
+                                        <div class="p-d-flex p-ai-center">
+                                            <span>{{group.label}}</span>
+                                        </div>
+                                    </ng-template>
+                                </p-multiSelect>
+                            </div>
+                        </div>
+                    </ng-container>
+
+
+
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="{{'MENU.ALQUILER' | translate}}">
+                Content 2
+            </p-tabPanel>
+        </p-tabView>
+
+
+    </div>
+    <div style="width: 75%;">
+        <app-tarjeta-propiedad *ngIf="propiedades && propiedades.length > 0" [propiedades]="propiedades"
+            [paginator]="true" [cantidad]="cantidad"></app-tarjeta-propiedad>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div class="container p-d-flex p-flex-column p-jc-start p-ac-center">
+    <div class="banner p-d-flex p-jc-center p-ac-center" [ngStyle]="{'background-image':'url(https://astelus.com/wp-content/viajes/Lago-Moraine-Parque-Nacional-Banff-Alberta-Canada.jpg)'}">
+
+    </div>
+    <div class="categorias">
+        <div class="contenidoCat">
+            <div class="tituloCategoria p-d-flex p-jc-center">
+                <h2>Elige tu categoría favorita</h2>
+            </div>
+            <div class="botones p-d-flex p-jc-center">
+                <div class="botonesCategoria" *ngFor="let item of categorias">
+                    <button pButton pRipple type="button" (click)="filter(item.id)" label="{{item.nombre}}" class="p-button-outlined" routerLink="/blog/blogs/{{item.id}}"></button>
+                </div>
+                <!--  <div class="botonesCategoria">
+                    <button pButton pRipple type="button" (click)="todosBlogs()" label="Todos" class="p-button-outlined"></button>
+                </div> -->
+            </div>
+
+        </div>
+    </div>
+    <div class="blogs p-d-flex">
+        <div class="blogsDestacados p-flex-column">
+            <div class="tituloDestacado">
+                <h2>Titulo Destacados</h2>
+            </div>
+            <div class="cartas p-d-flex">
+                <div class="cartaDestacado" *ngFor="let item of cantidadBlogs">
+                    <p-card header="{{item.titulo}}" subheader="{{item.subtitulo}}" styleClass="p-card-shadow">
+                        <ng-template pTemplate="header">
+                            <div class="imagen" [ngStyle]="{'background-image':'url('+ item.imagen +')'}"></div>
+                        </ng-template>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="recomendados">
+    <app-recomendados-tarjeta></app-recomendados-tarjeta>
+</div>

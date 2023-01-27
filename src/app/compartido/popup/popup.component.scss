@@ -1,0 +1,18 @@
+::ng-deep.Modal .p-button.p-button-text {
+    color: white;
+    background-color: rgba(29, 110, 165, 0.8);
+    width: 100%;
+}
+
+::ng-deep.Modal .p-button.p-button-text:hover {
+    background-color: #d15731 !important;
+    color: rgb(255, 255, 255) !important;
+}
+
+::ng-deep .Modal .p-dialog .p-dialog-footer {
+    text-align: center;
+}
+
+::ng-deep .p-dialog img {
+    width: 100% !important;
+}

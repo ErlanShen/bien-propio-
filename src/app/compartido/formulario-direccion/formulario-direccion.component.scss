@@ -1,0 +1,19 @@
+.margen{
+    border-color: rgba(0, 0, 0, 0.856);
+    border: 1px ridge;
+}
+
+::ng-deep .formu .p-col {
+    flex-grow: 0;
+    flex-basis: 0;
+    padding: 0;
+}
+.container >h1,h2,h3,h4,h5{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+label{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+p{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}

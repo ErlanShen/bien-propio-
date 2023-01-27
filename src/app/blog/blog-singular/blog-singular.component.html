@@ -1,0 +1,41 @@
+<div class="p-grid p-nogutter container" *ngIf="blog">
+    <div class="header p-col p-nogutter">
+        <div class="fondoImagen p-col">
+            <div class="imagen p-grid p-col p-nogutter" [ngStyle]="{'background-image':'url('+ blog.imagen +')'}">
+            </div>
+        </div>
+        <div class="titulo p-grid p-nogutter p-col-12 p-d-flex">
+            <div class="p-col-7 p-d-flex p-as-end">
+                <h2>{{blog.titulo}}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="informacion p-col-12">
+        <div class="p-grid p-nogutter">
+            <div class="p-col-12 p-nogutter">
+                <div class="p-d-flex p-jc-between ">
+                    <h4 class="categoria">Categorias</h4>
+                    <h4 class="fecha">Publicado: {{blog.fechaPublicacion | date: 'dd/MMMM/yyyy'}}</h4>
+                </div>
+            </div>
+            <div class="texto p-grid p-col p-nogutter p-ml-4" *ngIf="blog.categorias | async as imagen">
+                <div class="p-col-2 p-nogutter p-d-flex" *ngFor="let item of imagen">
+                    <div #categoria *ngIf="item" class="imagenCarta nombreCategoria-blur" [ngStyle]="{'background-image': 'url('+ item.imagen+ ')'}">
+                        <div class="nombreCategoria nombreCategoria-blur p-d-flex p-jc-center p-ai-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 350">                           
+                                    <text textLength="85%" text-anchor="middle" font-size="3rem">{{item.nombre}}</text>                             
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="contenido p-grid p-col-12 p-nogutter">
+            <quill-view-html class="info p-col-10" [content]="blog.contenido" theme="snow"></quill-view-html>
+        </div>
+    </div>
+</div>

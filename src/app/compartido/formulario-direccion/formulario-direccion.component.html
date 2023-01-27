@@ -1,0 +1,217 @@
+<form #formularioDirec="ngForm" class="formu p-col p-d-flex  p-flex-wrap animar" [@inOutAnimation] *ngIf="editar"
+    [ngClass]="columna?'p-flex-row  p-jc-between':'p-flex-column'">
+    <div class="formu p-d-flex p-d-flex-column p-flex-wrap" [ngClass]="columna?'p-col-6 p-offset-1':'p-col-12'">
+        <label *ngIf="!columna" for="titulo" class="p-text-bold p-col-12 p-mb-4"> {{"ADMINPAGINAS.DIRECCION" | translate}}</label>
+        <div class="p-col-6">
+            <label *ngIf="columna" for="titulo">{{'DIRECCION.PROVINCIA' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.PROVTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <p-dropdown [options]="provincias" [(ngModel)]="direccion.provincia" optionLabel="name" [filter]="true"
+                filterBy="name" [showClear]="true" placeholder="Provincia" optionValue="name"
+                (onChange)="buscarCantones($event)" name="provincia" required
+                [ngClass]="formularioDirec.controls['provincia']?.errors?.required && formularioDirec.controls['provincia']?.touched ? 'ng-invalid ng-dirty' : ''">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="direccion.provincia">
+                        <div>{{direccion.provincia}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-provincia pTemplate="item">
+                    <div class="country-item">
+                        <div>{{provincia.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <label
+                *ngIf="formularioDirec.controls['provincia']?.errors?.required && formularioDirec.controls['provincia']?.touched"
+                for="titulo">{{'DIRECCION.PROVINCIAERROR' | translate}}</label>
+        </div>
+
+        <div class="p-col-6">
+            <label *ngIf="columna" for="titulo" >{{'DIRECCION.CANTON' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.CANTONTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <p-dropdown [options]="cantones" [(ngModel)]="direccion.canton" optionLabel="name" [filter]="true"
+                filterBy="name" [showClear]="true" placeholder="Cantón" optionValue="name"
+                [disabled]="!direccion.provincia" (onChange)="buscarParroquias($event)" name="canton" required
+                [ngClass]="formularioDirec.controls['canton']?.errors?.required && formularioDirec.controls['canton']?.touched ? 'ng-invalid ng-dirty' : ''">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="direccion.canton">
+                        <div>{{direccion.canton}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-caanton pTemplate="item">
+                    <div class="country-item">
+                        <div>{{caanton.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <label
+                *ngIf="formularioDirec.controls['canton']?.errors?.required && formularioDirec.controls['canton']?.touched"
+                for="titulo">{{'DIRECCION.CANTONERROR' | translate}}</label>
+        </div>
+        <div class="p-col-12 p-mt-4">
+            <label *ngIf="columna" for="titulo" >{{'DIRECCION.PARROQUIA' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.PARROQUIATIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <p-dropdown [options]="parroquias" [(ngModel)]="direccion.parroquia" optionLabel="name" [filter]="true"
+                filterBy="name" [showClear]="true" placeholder="Parroquia" optionValue="name" required
+                [disabled]="!direccion.canton || !direccion.provincia" name="parroquia"
+                (onChange)="elegirCanton($event)"
+                [ngClass]="formularioDirec.controls['parroquia']?.errors?.required && formularioDirec.controls['parroquia']?.touched ? 'ng-invalid ng-dirty' : ''">
+                <ng-template pTemplate="selectedItem">
+                    <div class="country-item country-item-value" *ngIf="direccion.parroquia">
+                        <div>{{direccion.parroquia}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-parroquia pTemplate="item">
+                    <div class="country-item">
+                        <div>{{parroquia.name}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            <label
+                *ngIf="formularioDirec.controls['parroquia']?.errors?.required && formularioDirec.controls['parroquia']?.touched"
+                for="titulo">{{'DIRECCION.PARROQUIAERROR' | translate}} </label>
+        </div>
+        <div class="p-col-12 p-mt-2">
+            <label for="titulo">{{'DIRECCION.BARRIO' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.BARRIOTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="barrio" #barrio="ngModel" [(ngModel)]="direccion.barrio" type="text" placeholder="Barrio"
+                pInputText [disabled]="!direccion.parroquia">
+        </div>
+        <div class="p-col-12 p-mt-2">
+            <label for="titulo">{{'DIRECCION.REFERENCIAS' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.REFERENCIASTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="referencias" #referencias="ngModel" [(ngModel)]="direccion.referencias" type="text"
+                placeholder="Referencias" pInputText [disabled]="!direccion.parroquia">
+        </div>
+        <div class="p-col-6 p-mt-2">
+            <label for="titulo">{{'DIRECCION.CALLEP' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.CALLEPTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="callePrincipal" #callePrincipal="ngModel" [(ngModel)]="direccion.callePrincipal" type="text"
+                placeholder="Calle Principal" pInputText [disabled]="!direccion.parroquia" required [ngClass]="formularioDirec.controls['callePrincipal']?.errors?.required 
+            && formularioDirec.controls['callePrincipal']?.touched ? 'ng-invalid ng-dirty' : ''">
+            <label
+                *ngIf="formularioDirec.controls['callePrincipal']?.errors?.required && formularioDirec.controls['callePrincipal']?.touched"
+                for="titulo">{{'DIRECCION.CALLEPERROR' | translate}}</label>
+        </div>
+        <div class="p-col-6 p-mt-2">
+            <label for="titulo">{{'DIRECCION.CALLES' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.CALLESTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="calleSecundaria" #calleSecundaria="ngModel" [(ngModel)]="direccion.calleSecundaria" type="text"
+                placeholder="Calle Secundaria" pInputText [disabled]="!direccion.parroquia">
+        </div>
+        <div class="p-col-6 p-mt-2">
+            <label for="titulo">{{'DIRECCION.NUMERACION' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.NUMERACIONTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="numeracion" #numeracion="ngModel" [(ngModel)]="direccion.numeracion" type="text"
+                placeholder="Numeracion" pInputText [disabled]="!direccion.parroquia">
+        </div>
+
+        <div class="p-col-6 p-mt-2">
+            <label for="titulo">{{'DIRECCION.CODIGOP' | translate}} </label>
+            <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.CODTIP' | translate}}" style="color: rgb(0, 119, 255);"></fa-icon>
+            <input name="codigoPostal" [disabled]="!direccion.parroquia" #codigoPostal="ngModel"
+                [(ngModel)]="direccion.codigoPostal" type="text" placeholder="Codigo postal" pInputText>
+        </div>
+    </div>
+    <div class="p-d-flex p-flex-column " [ngClass]="columna?'p-col-4':'p-col-12'">
+        <label for="titulo" class="p-mb-2 p-col-12">{{'DIRECCION.MAPA' | translate}}  <fa-icon *ngIf="columna" [icon]="faQuestionCircle" pTooltip="{{'DIRECCION.MAPATIP' | translate}}" tooltipPosition="top" style="color: rgb(0, 119, 255);"></fa-icon></label>
+        <div class=" p-col p-jc-center" [ngStyle]="sinLatLng?{'box-shadow':'0px 0px 0px 1px #F44336'}:{}">
+            <google-map #googleMap [options]="optionsMap" [center]="center" [zoom]="zoom" (mapClick)="click($event)"
+                (mapDragend)="alMover()" height="500px" width="100%">
+                <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+                    [label]="marker.label" [title]="marker.title" [options]="marker.options" [center]="ubicacion"
+                    (mapClick)="openInfo(markerElem, marker)">
+                </map-marker>
+                <map-info-window>
+                    <div class="p-d-flex p-flex-column">
+                        <h3 class="p-mb-2"> {{infoContent}}</h3>
+                    </div>
+                </map-info-window>
+            </google-map>
+        </div>
+        <label *ngIf="sinLatLng" for="titulo" class="p-mt-2">{{'DIRECCION.MAPAERROR' | translate}}</label>
+    </div>
+    <div class="p-col-6 p-jc-center p-mt-2 " [ngClass]="columna?'p-offset-1':''">
+        <button pButton pRipple type="button" label="{{'DIRECCION.ANIADIR-DIRECCION' | translate}}" class="p-button-info  p-shadow-3"
+            icon="pi pi-map-marker" iconPos="right" (click)="enviarDireccion(direccion)"
+            [disabled]="!latLngPropiedad || !formularioDirec.valid"></button>
+    </div>
+</form>
+<div class="p-col p-d-flex  p-flex-wrap p-flex-column p-jc-center p-grid" *ngIf="!editar" [@inOutAnimation]>
+    <div class="margen p-col-11 p-d-flex  p-flex-wrap" [ngClass]="columna?'p-d-flex-row p-offset-1 p-jc-between':'p-d-flex-column'">
+        <div class=" p-d-flex p-d-flex-column p-flex-wrap"
+        [ngClass]="columna?'p-col-5':'p-col-11'">
+            <div class="p-col-12 p-mt-2 p-mb-4">
+                <label *ngIf="!columna" for="titulo" class="p-text-bold "> {{"ADMINPAGINAS.DIRECCION" | translate}}</label>
+            </div>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2"> {{'DIRECCION.PROV-NOMBRE' | translate}}: </label>
+                <p> {{direccion.provincia}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.CANT-NOMBRE' | translate}}: </label>
+                <p> {{direccion.canton}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.PARROQUIA-NOMBRE' | translate}}: </label>
+                <p> {{direccion.parroquia}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.BARRIO' | translate}}: </label>
+                <p> {{direccion.barrio}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.REFERENCIAS' | translate}}: </label>
+                <p> {{direccion.referencias}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.CALLEP' | translate}}: </label>
+                <p> {{direccion.callePrincipal}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.CALLES' | translate}}: </label>
+                <p> {{direccion.calleSecundaria}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.NUMERACION' | translate}}: </label>
+                <p> {{direccion.numeracion}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.CODIGOP' | translate}}: </label>
+                <p> {{direccion.codigoPostal}} </p>
+            </div>
+            <p-divider class="p-col-12"></p-divider>
+            <div class="p-col-12 p-d-flex p-d-flex-column" *ngIf="!columna">
+                <label class="p-text-bold p-ml-2 p-mr-2">{{'DIRECCION.MAPA2' | translate}}: </label>
+            </div>
+        </div>
+
+        <div class="bordes p-mt-2" [ngClass]="columna?'p-col-5':'p-col-12'">
+            <label *ngIf="columna" class="p-text-bold p-ml-2 p-mr-2 p-mb-2">{{'DIRECCION.MAPA2' | translate}}: </label>
+            <google-map [options]="optionsMap2" [center]="center" [zoom]="zoom" height="300px" width="100%">
+                <map-marker #markerElem="mapMarker" *ngFor="let marker of markers" [position]="marker.position"
+                    [label]="marker.label" [title]="marker.title" [options]="marker.options" [center]="ubicacion"
+                    (mapClick)="openInfo(markerElem, marker)">
+                </map-marker>
+                <map-info-window>
+                    <div class="p-col-12 p-flex-column">
+                        <h3 class="p-mb-2"> {{infoContent}}</h3>
+                    </div>
+                </map-info-window>
+            </google-map>
+        </div>
+        <div class="p-col-6 p-jc-center p-mt-2 ">
+            <button pButton pRipple type="button" label="{{'DIRECCION.EDITAR-DIRECCION' | translate}}" class="p-button-info  p-shadow-3"
+                icon="pi pi-pencil" iconPos="right" (click)="editar=true"></button>
+        </div>
+    </div>
+</div>

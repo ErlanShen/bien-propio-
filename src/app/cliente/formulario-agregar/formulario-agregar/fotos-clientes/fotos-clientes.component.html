@@ -1,0 +1,39 @@
+<div class="container  p-grid p-col-12">
+    <div class="p-col-12  p-md-6 p-lg-3 p-xl-3 file p-d-flex p-jc-center p-ai-center image-upload cambio" style="height: 12rem;"  (click)="img.click()">
+        <label>
+            <fa-icon [icon]="faPlus" size="4x"></fa-icon>
+        </label>
+        <input #img id="file-input{{id}}" type="file" accept='image/*' (change)="ver($event)" [multiple]='multiples' />
+    </div>
+    <div class="p-col-12  p-md-6 p-lg-3 p-xl-3 file  image  " style="min-height: 12rem;" *ngFor="let item of imgsEditar;let indice=index"
+        pDraggable="gens" pDroppable="gens" (onDragStart)="onDragStart(indice)" (onDrop)="onDrop2(indice)">
+        <div class="buttons p-col-12 p-d-flex p-jc-between p-p-1">
+            <p-button styleClass="p-px-2 " (click)="borrarFoto(indice)" onclick="click"  class="eliminar p-d-flex p-ai-start " >
+                <ng-template pTemplate="content">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </ng-template>
+            </p-button>
+        </div>
+        <div *ngIf="item" class="p-col-12 imagenContainer">
+            <img src="{{item}}" alt="" height="200px" width="100%">
+        </div>
+    </div>
+
+    
+
+    <div class="p-col-12 p-md-6  p-lg-3 p-xl-3 file  image " style="min-height: 12rem;" *ngFor="let item of imagenesPrev;let indice=index"
+        pDraggable="gens" pDroppable="gens" (onDragStart)="onDragStart(indice)" (onDrop)="onDrop(indice)">
+        <div class="buttons p-col-12  p-p-1">
+            <p-button styleClass="p-px-2" (click)="quitarFoto(indice)" class="eliminar">
+                <ng-template pTemplate="content">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </ng-template>
+            </p-button>
+        </div>
+        <div *ngIf="item.archivo" class="p-col-12 imagenContainer">
+            <img [src]='item.archivo' alt="" height="100%" width="100%">
+        </div>
+    </div>
+
+
+</div>

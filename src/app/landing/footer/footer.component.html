@@ -1,0 +1,99 @@
+<div class=" container p-grid p-nogutter  p-jc-center" *ngIf="identidad" [value]="identidad">
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-3 p-xl-3 p-grid p-jc-center p-nogutter" >
+        <div class="box">
+            <div class="textoGrande p-col-12">
+                <p>{{'FOOTER.MENU' | translate}}</p>
+            </div>
+            <p-tieredMenu [model]="items"></p-tieredMenu>
+        </div>
+    </div>
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-3 p-xl-3 p-grid p-jc-center p-nogutter">
+        <div class="box p-col-11 box p-col p-grid p-jc-center p-as-start p-d-flex p-flex-column">
+            <div class="textoGrande p-col">
+                <p>{{'FOOTER.SUGERENCIA' | translate}}</p>
+            </div>
+            <div class="texto p-col-12">
+                <a routerLink=''>{{'FOOTER.MENSAJE-AQUI' | translate}}</a>
+            </div>
+            <div class="texto p-col-12">
+                <a routerLink=''>{{'FOOTER.SESION' | translate}}</a>
+            </div>
+            <div class="texto p-col-12">
+                <a routerLink=''>{{'FOOTER.SERVICIOCLIENTE' | translate}}</a>
+            </div>
+            <div class="texto p-col-12">
+                <a routerLink=''>{{'FOOTER.TERMINOSYCONDICIONES' | translate}}</a>
+            </div>
+            <div class="texto p-col-12" *ngFor="let item of paginasActivas">
+                <a routerLink='/{{paginasActivas.id}}'>{{item.titulo}}</a>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-3 p-xl-3 p-grid p-jc-center ">
+        <div class="box p-col-11 p-grid p-jc-center p-as-start p-d-flex p-flex-column">
+            <div class="textoGrande p-col">
+                <p>{{'FOOTER.CONTACTANOS' | translate}}</p>
+            </div>
+            <div class="texto2 p-col-12">
+                <a routerLink=''>{{'FOOTER.TELEFONOS' | translate}} : {{identidad.telefonos}}</a>
+            </div>
+            <div class="texto2 p-col-12">
+                <a routerLink=''>{{'FOOTER.CORREO' | translate}} : {{identidad.correo}}</a>
+            </div>
+            <div class="texto2 p-col-12">
+                <a routerLink='' class="p-mb-4">{{'FOOTER.ATENCION' | translate}}:
+                    <li>{{identidad.horariosDeAtencion}}</li>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="p-col-12 p-sm-6 p-md-6 p-lg-3 p-xl-3 p-grid p-jc-center p-nogutter">
+        <div class="box p-col-4 p-grid p-jc-center p-as-start p-d-flex p-flex-column">
+            <div class="buttons p-grid p-jc-center p-as-center p-d-flex p-col-10">
+                <a *ngIf="identidad.facebook.length>0" class="p-mr-4 p-mb-2" href="{{identidad.facebook}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faFacebook"></fa-icon>
+                </a>
+                <a *ngIf="identidad.instagram.length>0" class="p-mr-4 p-mb-2" href="{{identidad.instagram}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faInstagram"></fa-icon>
+                </a>
+                <a *ngIf="identidad.whatsapp.length>0" class="p-mr-4 p-mb-2" href="{{identidad.whatsapp}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faWhatsapp"></fa-icon>
+                </a>
+                <a *ngIf="identidad.youtube.length>0" class="p-mr-4 p-mb-2" href="{{identidad.youtube}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faYoutube"></fa-icon>
+                </a>
+                <a *ngIf="identidad.telegram.length>0" class="p-mr-4 p-mb-2" href="{{identidad.telegram}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faTelegram"></fa-icon>
+                </a>
+                <a *ngIf="identidad.tiktok.length>0" class="p-mr-4 p-mb-2" href="{{identidad.tiktok}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faTiktok"></fa-icon>
+                </a>
+                <a *ngIf="identidad.twitter.length>0" class="p-mr-4 p-mb-2" href="{{identidad.twitter}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faTwitter"></fa-icon>
+                </a>
+                <a *ngIf="identidad.vkontakte.length>0" class="p-mr-4 p-mb-2" href="{{identidad.vkontakte}}" target="_blank">
+                    <fa-icon class="fa-2x" [icon]="faVk"></fa-icon>
+                </a>
+            </div>
+            <div class="p-col p-grid p-ac-center p-d-flex p-flex-column nomargen">
+                <div class="textoGrande p-col-12 p-grid p-jc-center p-d-flex p-flex-row p-mb-4">
+                    <p class="p-d-flex p-as-center p-mr-2"> <a href=""> {{identidad.tituloDelSitio}} </a> </p>
+                    <img class="img p-d-flex p-as-start" src="{{identidad.logo}}" alt="">
+                </div>
+                <div class="textoGrande p-col-12 p-grid p-jc-center p-d-flex p-flex-row">
+                    <p class="p-d-flex p-as-center p-mr-2"><a href="">bkecuador</a></p>
+                    <img class="img" src="../../../assets/logo/logo_bk_white.svg" alt="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container p-col p-grid p-jc-start p-nogutter">
+    <div class="box">
+        <div class="textoMd p-col-12">
+            <p>{{'FOOTER.COPY' | translate}} © {{date}} Bien Propio</p>
+        </div>
+    </div>
+</div>

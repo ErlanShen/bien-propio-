@@ -1,0 +1,27 @@
+<div class="container p-d-flex p-jc-center ">
+    <div class="formularioP p-d-flex">
+        <p-card class="p-formgrid p-grid p-shadow-1">
+            <h3>Banner</h3>
+            <div class="p-d-flex p-flex-column p-mt-3">
+                <div class="p-d-flex p-flex-column p-mb-3">
+                    <label for="titulo" class="p-mb-2">Mensaje</label>
+                    <input id="titulo" #titulo="ngModel" type="text" pInputText [(ngModel)]="banner.mensaje" placeholder="Banner">
+                </div>
+                <div class="p-d-flex p-flex-column p-mb-3">
+                    <label for="imagen" class="p-mb-4">Imágen</label>
+                    <app-selector-fotos *ngIf="banner" [fotoSelec]="editando?[banner.imagen]:[]" (checkados)="verImagenes($event)"></app-selector-fotos>
+                </div>
+                <div class="p-grid p-d-flex p-flex-column p-mb-3">
+                    <label for="categoria" class="p-mb-2">Categoria</label>
+                    <p-dropdown name="categoria" #categoria="ngModel" [options]="transacciones" optionLabel="nombre" optionValue="valor" [(ngModel)]="banner.transacciones">
+
+                    </p-dropdown>
+                </div>
+                <div class="p-d-flex p-jc-center">
+                    <button pButton type="button" label="{{ 'BOTONES.GUARDAR' | translate}}" class=" p-md-6 p-button-info p-mr-1 p-shadow-3" (click)="guardar(banner)" icon="pi pi-save"></button>
+                    <button pButton type="button" label="{{ 'BOTONES.CANCELAR' | translate}}" class="p-button-danger p-md-6 p-shadow-3" icon="pi pi-times" routerLink="/admin/banners"></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

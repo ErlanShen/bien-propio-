@@ -1,0 +1,376 @@
+<div class="p-grid" *ngIf="propiedadmodal && mistransacciones && redesSociales" [value]="redesSociales">
+    <div class="p-col-12 p-md-12 p-sm-12 p-lg-6 p-xl-6">
+        <h1 *ngIf="titulo">{{propiedadmodal.titulo}}</h1>
+        <div class="p-col-12 p-d-flex p-ai-start p-jc-center" id="cursor" >
+            <ng-magnizoom zoomMode="LENS" #zoom  [imageClass]= "{'principal':true }"
+                imageSrc="{{propiedadmodal.imgDestcada}}">
+            </ng-magnizoom>
+        </div>
+
+        <div class="p-col-12  p-jc-center p-ac-center">
+            <div class="p-grid">
+                <swiper class="swContainerDetalle p-col-12 " [config]="config">
+                    <div class="swiper-slide">
+                        <ng-template swiperSlide>
+                            <div class="img" [ngClass]="propiedadmodal.imgDestcada === urlSeleccionada?'visible': ''"
+                                (click)="galeria(propiedadmodal.imgDestcada)"></div>
+                            <img class="encima" src="{{propiedadmodal.imgDestcada}}" alt="">
+                        </ng-template>
+                    </div>
+                    <div class="swiper-slide" *ngFor="let item of propiedadmodal.galeria">
+                        <ng-template swiperSlide>
+                            <div class="img" [ngClass]=" item === urlSeleccionada? 'visible': ''"
+                                (click)="galeria(item)"></div>
+                            <img class="encima" src="{{item}}">
+                        </ng-template>
+                    </div>
+
+                    
+                    <div class="swiper-slide" *ngFor="let plano of propiedadmodal.planos">
+                        <ng-template swiperSlide>
+                            <div class="img" [ngClass]="plano === urlSeleccionada? 'visible': ''"
+                                (click)="galeria(plano)"></div>
+                            <img class="encima" src="{{plano}}" alt="">
+                        </ng-template>
+                    </div>
+                </swiper>
+            </div>
+        </div>
+
+        <div class="p-col-12  p-jc-center p-ac-center">
+            <div class="p-grid">
+                <h2 class="p-col-12 margenp">{{'TARJETA-PROPIEDAD.PLANOS' | translate}}</h2>
+                <swiper class="swContainerDetalle p-col-12 " [config]="config">
+                    <div class="swiper-slide" *ngFor="let plano of propiedadmodal.planos">
+                        <ng-template swiperSlide>
+                            <div class="img" [ngClass]="plano === urlSeleccionada? 'visible': ''"
+                                (click)="galeria(plano)"></div>
+                            <img class="encima" src="{{plano}}" alt="">
+                        </ng-template>
+                    </div>
+                </swiper>
+            </div>
+        </div>
+
+    </div>
+    <div class="p-col-12 derecha p-md-12 p-sm-12 p-lg-6  p-xl-6  ">
+        <div class=" derechaarriba ">
+            <div class="p-fluid p-formgrid p-grid p-shadow-3">
+                <div class="p-d-flex p-field p-col-12 p-md-12 p-d-flex-column p-jc-between">
+                    <div class="p-grid ">
+                        <h1 class="bordea"> </h1>
+                        <h2 class="p-col-12 "> {{intermediaria(propiedadmodal.tipo)}}</h2>
+                        <h2 class="p-col-12 speso"> <b> {{'FORMPROPIEDAD.PRECIO' | translate}}: </b>
+                            {{propiedadmodal.precio|currency}} </h2>
+                        <h3 class="p-col-12 speso"><b> {{ 'FORMPROPIEDAD.ALICUOTA' | translate}}:
+                            </b>{{propiedadmodal.alicuota|currency}}</h3>
+                        <h3 class="p-col-12 speso"><b>{{ 'FORMPROPIEDAD.ANIOA' | translate}}: </b>
+                            {{propiedadmodal.antiguedad}}</h3>
+                    </div>
+
+                    <div class="p-d-flex p-flex-column p-flex-sm-column  p-flex-md-column p-flex-lg-row p-flex-xl-row ">
+                        <h1 class="bordea"></h1>
+                        <button pButton class="edit" (click)="agregarf(propiedadmodal.id,clienteC)"
+                            [ngClass]="clienteC && clienteC.favorito.indexOf(propiedadmodal.id)> -1?'p-button-danger edit2':'p-button-outlined '"
+                            [label]="(clienteC && clienteC.favorito.indexOf(propiedadmodal.id)> -1?'BOTONES.FAVORITO'   : 'BOTONES.AGFAVORITO') |translate "
+                            icon="pi pi-heart">
+                        </button>
+
+
+                        <h1 class="bordea"></h1>
+
+                        <button pButton class=" edit p-button-secondary p-button-outlined"
+                            label="{{ 'BOTONES.EDITAR' | translate}}" icon="pi pi-pencil" *ngIf="mostrar"
+                            routerLink="/cuenta/nuevo/datosPersonales/{{id}}">
+                        </button>
+
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                    <div *ngIf="propiedadmodal.direccion" class="p-field p-col-12 p-md-6 ">
+                        <p>
+                            <fa-icon [icon]="faMapMarkedAlt"></fa-icon> {{propiedadmodal.direccion.provincia}},
+                            {{propiedadmodal.direccion.canton}},
+                            {{propiedadmodal.direccion.parroquia}}, {{propiedadmodal.direccion.barrio}}
+                        </p>
+                    </div>
+                    <div class="p-field p-col-12 p-md-10" *ngIf="!propiedadmodal.direccion">
+                        <p>
+                            <fa-icon [icon]="faMapMarkedAlt"></fa-icon> {{'TARJETA-PROPIEDAD.NOHAYDIRECCION' |
+                            translate}}
+                        </p>
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                    <p-button label="{{ 'BOTONES.CONTACTAR' | translate}}"></p-button>
+                </div>
+            </div>
+        </div>
+        <div class="p-col-12 derechaabajo">
+            <p-scrollPanel [style]="{width: '100%'}" styleClass="custombar1">
+
+                <p-tabView styleClass="tabview-custom">
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <span class="p-mr-1">{{ 'PROPIEDAD.GENERAL' | translate}}</span>
+                            <fa-icon [icon]="faFileAlt"></fa-icon>
+                        </ng-template>
+                        <div class="p-grid">
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faDollarSign"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b>{{ 'FORMPROPIEDAD.PRECIO' | translate}}:
+                                        </b>{{propiedadmodal.precio|currency}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faHandHoldingUsd"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b>{{ 'FORMPROPIEDAD.TIPO' | translate}}:
+                                        </b>{{intermediaria(propiedadmodal.tipo)}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faBed"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b> {{ 'FORMPROPIEDAD.CUARTOS' | translate}}: </b>{{propiedadmodal.cuartos}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faBath"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b> {{ 'FORMPROPIEDAD.BANIOS' | translate}}: </b>{{propiedadmodal.banos}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faCity"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b> {{ 'FORMPROPIEDAD.PISOS' | translate}}: </b>{{propiedadmodal.pisos}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faRulerCombined"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b> {{ 'FORMPROPIEDAD.METROS2' | translate}}:
+                                        </b>{{propiedadmodal.metrosCuadrados}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="p-col-12">
+                                <div class="p-grid">
+                                    <div class="p-col-1">
+                                        <fa-icon [icon]="faEdit"></fa-icon>
+                                    </div>
+                                    <div class="p-col-11">
+                                        <b> {{ 'FORMPROPIEDAD.DESCRIPCION' | translate}}:
+                                        </b>{{propiedadmodal.descripcion}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <span class="p-mr-1"> {{ 'PROPIEDAD.AMENIDADES' | translate}}</span>
+                            <fa-icon [icon]="faTree"></fa-icon>
+                        </ng-template>
+
+                        <div class="p-grid">
+                            <div class="p-col-12 p-grid margen">
+                                <div class="p-col-6 ">
+                                    <ul class="margen">
+                                        <b>{{'TARJETA-PROPIEDAD.GENERALES' | translate}}</b>
+                                        <li *ngFor="let am of listarGenerales(propiedadmodal.caracteristicasG)">
+                                            {{ 'FORMPROPIEDAD.'+ am.llave | translate}}
+                                        </li>
+                                    </ul>
+                                    <ul class="margen">
+                                        <b class="margen">{{'TARJETA-PROPIEDAD.AMBIENTES' | translate}}</b>
+                                        <li *ngFor="let am of listarAmbientes(propiedadmodal.ambientes)">
+                                            {{ 'FORMPROPIEDAD.'+ am.llave | translate}}
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="p-col-6">
+                                    <ul class="margen">
+                                        <b>{{"TARJETA-PROPIEDAD.EXTERIORES" | translate}}</b>
+                                        <li *ngFor="let am of listarExteriores(propiedadmodal.exteriores)">
+                                            {{ 'FORMPROPIEDAD.'+ am.llave | translate}}
+                                        </li>
+
+                                    </ul>
+                                    <ul class="margen">
+                                        <b>{{'TARJETA-PROPIEDAD.SERVICIOS' | translate}}</b>
+                                        <li *ngFor="let am of listarServicios(propiedadmodal.servicios)">
+                                            {{ 'FORMPROPIEDAD.'+ am.llave | translate}}
+                                        </li>
+
+                                    </ul>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <span class="p-mr-1">{{ 'PROPIEDAD.MAPA' | translate}}</span>
+                            <fa-icon [icon]="faGlobeAmericas"></fa-icon>
+                        </ng-template>
+                        <app-mapa [latitudPropiedad]="propiedadmodal.lat" [longitudPropiedad]="propiedadmodal.lng"
+                            [editar]="false"></app-mapa>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <span class="p-mr-1">{{ 'PROPIEDAD.PROPIETARIO' | translate}}</span>
+                            <fa-icon [icon]="faUser"></fa-icon>
+                        </ng-template>
+                        <h2 class="p-mb-3">{{'TARJETA-PROPIEDAD.AUTOR' | translate}}</h2>
+                        <div class="publicacionAutor p-grid p-mb-1 p-ai-center" *ngIf="ClienteServi">
+                            <div class="propietario-body p-col-6 p-d-flex p-ai-center p-ac-center p-shadow-3">
+                                <img class=" p-col-3 img-propietario" src="{{ClienteServi.photoURL}}">
+                                <div class=" p-col card-recomendados">
+                                    <p>{{titleCase(ClienteServi.displayName)}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template pTemplate="footer">
+                            <h3 class="p-mb-2">{{"TARJETA-PROPIEDAD.PUBLICACIONESDELAUTOR" | translate}}</h3>
+                            <div class="p-grid p-col-10 p-jc-center p-ac-center">
+                                <a class=" p-col-12 p-grid p-ai-center  p-nogutter p-shadow-5 p-mb-2 card-publicados"
+                                    *ngFor="let publicado of publicacionesAutor">
+                                    <img class=" p-col-3 img-recomendados" src="{{publicado.imgDestcada}}">
+                                    <div class=" p-col-7 card-recomendados">
+                                        <h4>{{publicado.titulo}}</h4>
+                                        <h5>{{transformarTipoPropiedad(publicado.tipo)}}</h5>
+                                        <p>{{publicado.precio | currency}}</p>
+                                        <p>{{titleCase(publicado.direccion.provincia)}},
+                                            {{titleCase(publicado.direccion.canton)}},
+                                            {{titleCase(publicado.direccion.callePrincipal)}}
+                                        </p>
+                                    </div>
+                                    <button pButton pRipple type="button" label="{{ 'CARTA.BOTON' | translate}} "
+                                        class="p-col p-as-end button-recomedados p-m-1" (click)="URL(publicado.id)"
+                                        icon="pi pi-angle-right" iconPos="right"></button>
+                                </a>
+                            </div>
+
+
+                        </ng-template>
+                    </p-tabPanel>
+                    <p-tabPanel>
+                        <ng-template pTemplate="header">
+                            <span class="p-mr-1">{{ 'PROPIEDAD.COMPARTIR' | translate}}</span>
+                            <fa-icon [icon]="faShareAlt"></fa-icon>
+                        </ng-template>
+                        <div class="p-col-12 p-grid p-d-flex p-flex-column p-ai-center">
+                            <h2>{{'TARJETA-PROPIEDAD.CODIGOQR' | translate}}</h2>
+                            <div class="tamanio p-md-5">
+                                <ngx-qrcode [elementType]="elementType" [value]="ver" cssClass="aclass"
+                                    errorCorrectionLevel="L">
+                                </ngx-qrcode>
+                            </div>
+                            <div class="p-col-12 copiarLink">
+                                <h3 class="p-mt-2 p-ml-2">{{ 'PROPIEDAD.COMPARTIR' | translate}}</h3>
+                                <div class="p-col-12 p-grid p-nogutter p-jc-center">
+                                    <input class="p-col-9" type="text" readonly
+                                        style="border: 1px solid var(--surface-d); font-size: 13px;"
+                                        placeholder=" {{verificarLink(ver,propiedadmodal.id)}}">
+                                    <p-button class="p-col-3"
+                                        label="{{(miCopiado?'BOTONES.COPIADO':'BOTONES.COPIAR') | translate}}"
+                                        icon="pi pi-paperclip" iconPos="right" (click)="copiarLink(newLink)"></p-button>
+                                </div>
+                                <div class="p-col-12 p-d-flex p-jc-center p-ai-center p-m-1">
+                                    <a class="p-mr-3"
+                                        href="http://www.facebook.com/sharer.php?u={{newLink}}&t=BienPropio"
+                                        target="_blank" style="color: #1877f2;">
+                                        <fa-icon class="fa-2x" [icon]="faFacebook"></fa-icon>
+                                    </a>
+                                    <a class="p-mr-3" href="https://wa.me/whatsappphonenumber/?text={{newLink}}"
+                                        target="_blank" style="color: #25d366;">
+                                        <fa-icon class="fa-2x" [icon]="faWhatsapp"></fa-icon>
+                                    </a>
+                                    <a class="p-mr-3"
+                                        href="https://telegram.me/share/url?url={{newLink}}&text=BienPropio"
+                                        target="_blank" style="color: #0088cc;">
+                                        <fa-icon class="fa-2x" [icon]="faTelegram"></fa-icon>
+                                    </a>
+                                    <a class="p-mr-3" href="https://twitter.com/intent/tweet?text={{newLink}}"
+                                        target="_blank" style="color: #1da1f2;">
+                                        <fa-icon class="fa-2x" [icon]="faTwitter"></fa-icon>
+                                    </a>
+                                    <a class="p-mr-3" href="http://vk.com/share.php?url={{newLink}}" target="_blank"
+                                        style="color: #4a76a8;">
+                                        <fa-icon class="fa-2x" [icon]="faVk"></fa-icon>
+                                    </a>
+                                    <a class="p-mr-3"
+                                        href="mailto:info@example.com?&subject=&cc=&bcc=&body={{newLink}}%0A"
+                                        target="_blank" style="color: #ffb903;">
+                                        <fa-icon class="fa-2x" [icon]="faEnvelope"></fa-icon>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </p-tabPanel>
+                </p-tabView>
+                <p-scrollTop target="parent" styleClass="custom-scrolltop" [threshold]="100" icon="pi pi-arrow-up">
+                </p-scrollTop>
+            </p-scrollPanel>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-jc-center p-ac-center p-grid">
+
+        <div class="p-col-12 p-sm-12 p-md-12  p-lg-12 p-xl-6 p-grid" *ngIf="propiedadmodal.video.length>0">
+            <h2 class="p-col-12">{{'TARJETA-PROPIEDAD.VIDEOPROPIEDAD' | translate}} </h2>
+            <div class=" p-grid">
+                <div class="p-col-6">
+                    <iframe width="{{anchoVideos}}" height="{{altoVideos}}"
+                        [src]='transformadorURL(propiedadmodal.video) | seguro:"resourceUrl"'
+                        title={{propiedadmodal.titulo}}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-col-12  p-sm-12 p-md-12  p-lg-12 p-xl-6 p-grid" >
+            <div class="p-grid" *ngIf="propiedadmodal.matterport.length>0">
+                <h2 class="p-col-12">{{'TARJETA-PROPIEDAD.PROPIEDAD3D' | translate}}</h2>
+                <div class=" p-col-6">
+                    <iframe width="{{anchoVideos}}" height="{{altoVideos}}"
+                        [src]='propiedadmodal.matterport | seguro:"resourceUrl"' frameborder="0" allowfullscreen
+                        title="Matteport" >
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

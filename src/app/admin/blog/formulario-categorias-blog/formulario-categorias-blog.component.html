@@ -1,0 +1,21 @@
+<div class="container p-d-flex p-jc-center ">
+    <div class="formularioP p-d-flex">
+        <p-card class="p-formgrid p-grid p-shadow-1">
+            <h3 class="p-d-flex p-jc-center">Categorias</h3>
+            <div class="p-fluid">
+                <div class="p-field">
+                    <label for="titulo">Nombre</label>
+                    <input type="text" [(ngModel)]="categorias.nombre" pInputText name="nombre" placeholder="Cercanos a ti" required>
+                </div>
+                <div class="p-field">
+                    <label for="imagen" class="p-mb-2">Imágen</label>
+                    <app-selector-fotos *ngIf="categorias" [fotoSelec]="editando?[categorias.imagen]:[]" (checkados)="verImagenes($event)"></app-selector-fotos>
+                </div>
+                <div class="p-d-flex p-mt-3 ">
+                    <button pButton type="submit" label="Guardar" (click)="guardar(categorias)" class="p-mr-4"><i class="pi pi-save"></i></button>
+                    <button pButton type="button" label="Cancelar" routerLink="/admin/catBlog" class="p-button-danger"><i class="pi pi-times"></i></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

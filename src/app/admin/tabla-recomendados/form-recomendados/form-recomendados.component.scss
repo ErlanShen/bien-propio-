@@ -1,0 +1,18 @@
+::ng-deep .p-inputswitch ::ng-deep .p-inputswitch-slider {
+    transition-duration: 0s !important;
+}
+
+::ng-deep .p-inputswitch ::ng-deep .p-inputswitch-slider {
+    transition: none !important;
+}
+
+.resultadoPropiedades img {
+    width: 10%;
+    margin: 10px;
+}
+
+::ng-deep .p-scrollpanel .p-scrollpanel-bar {
+    background-color: #007ad9;
+    opacity: 1;
+    transition: background-color .2s;
+}

@@ -1,0 +1,118 @@
+<div class="fondo p-col p-mt-2  p-d-flex p-jc-center  p-ai-start" *ngIf="propiedades && clienteC && cantidad"   >
+    <div class="p-col-12 p-grid p-d-flex"  >
+        
+        <p-card [ngStyle]="{'width': width } " 
+            *ngFor="let propiedad of paginas? arregloProp(propiedades,cantidad,(posicion)) : propiedades  "
+            (click)="showResponsiveDialog(propiedad.id,propiedad.titulo, $event)">
+            <ng-template pTemplate="header" >
+                <h2 class="cortarT "> {{propiedad.titulo}} <span *ngIf="propiedad.activo===0">(Borrador)</span> </h2>
+                {{propiedad.tipo}}
+            </ng-template>
+
+            <div class="containerSw">
+
+                    <div class="swContainer">
+                        <swiper [config]="config">
+                            <div class="swiper-slide p-grid">
+                                <ng-template swiperSlide>
+                                    <div class=" p-d-flex">
+                                        <img class="imagen" src="{{propiedad.imgDestcada}}" alt="">
+                                    </div>
+
+                                </ng-template>
+                            </div>
+                            <div class="swiper-slide p-grid" *ngFor="let item of propiedad.galeria">
+                                <ng-template swiperSlide>
+                                    <div class=" p-d-flex">
+                                        <img class="imagen" src="{{item}}" alt="">
+                                    </div>
+
+                                </ng-template>
+                            </div>
+                        </swiper>
+
+                    </div>
+
+                <div class="fav">
+                    <button (click)="agregarf(propiedad.id,clienteC)" pButton pRipple type="button" icon="pi pi-heart"
+                        class="p-button-rounded p-button-danger "
+                        [ngClass]="clienteC.favorito && clienteC.favorito.indexOf(propiedad.id)>-1?'p-button-danger':'p-button-outlined'"></button>
+                </div>
+                <div class="new">
+                    <p-chip *ngIf="comparadorf(propiedad.publicacion)" label=" {{ 'FORMPROPIEDAD.NUEVO' | translate}}">
+                    </p-chip>
+                </div>
+
+            </div>
+
+            <p-footer >
+                <div class="margen">
+                    <h2>
+                        {{propiedad.precio|currency}}
+                    </h2>
+                </div>
+                <div class="p-grid">
+                    <div class="p-col-12 p-grid margenicon ">
+                        <div class="p-col-5  p-d-flex p-flex-column ">
+                            <fa-icon [icon]="faBath"></fa-icon>
+                            <div class="p-d-flex">
+                                <b class=" p-mr-1"> {{ 'FORMPROPIEDAD.BANIOS' | translate}}: </b>
+                                {{propiedad.banos}}
+                            </div>
+                            
+                        </div>
+                        <div class=" p-col-7  p-d-flex p-flex-column ">
+                            <fa-icon [icon]="faBed"></fa-icon>
+                            <div class="p-d-flex ">
+                                <b class=" p-mr-1"> {{ 'FORMPROPIEDAD.CUARTOS' | translate}}: </b>
+                                {{propiedad.cuartos}}
+                            </div>
+                            
+                           
+
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-grid margenicon">
+
+                        <div class="p-col-5 p-d-flex p-flex-column ">
+
+                            <fa-icon [icon]="faHome"></fa-icon>
+
+                            <div class="p-d-flex  ">
+                                <b class=" p-mr-1"> {{ 'FORMPROPIEDAD.PISOS' | translate}}: </b>
+                                {{propiedad.pisos}}
+
+                            </div>
+                            
+                        </div>
+                        <div class="p-col-7  p-d-flex p-flex-column  ">
+                            <fa-icon [icon]="faRulerCombined"></fa-icon>
+                            <div class="p-d-flex">
+                                <b class=" p-mr-1"> {{ 'FORMPROPIEDAD.METROS2' | translate}}:  </b>
+                                {{propiedad.metrosCuadrados}}
+                            </div>
+                           
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </p-footer>
+        </p-card>
+
+        <div class=" p-grid p-col-12 p-d-flex p-jc-end">
+            <p-paginator *ngIf="paginas" [first]="posicion" [rows]="cantidad" [totalRecords]="propiedades.length"
+                (onPageChange)="onPageChange($event)" [showPageLinks]="true">
+            </p-paginator>
+        </div>
+    </div>
+</div>
+
+<!-- dialog -->
+<p-dialog [header]="tProp" [(visible)]="displaycarta" [modal]="true" [style]="{width: '90vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false" [maximizable]="true">
+    <app-dialogo-tarjeta *ngIf="displaycarta" [visible]="displaycarta" [id]="expId" (cerrado)="cerrar($event)">
+    </app-dialogo-tarjeta>
+</p-dialog>

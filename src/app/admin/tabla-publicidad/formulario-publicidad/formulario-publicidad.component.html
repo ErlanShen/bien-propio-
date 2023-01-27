@@ -1,0 +1,60 @@
+<div class="container p-d-flex p-jc-center">
+    <div class="formularioP p-d-flex">
+        <p-card class="p-formgrid p-grid p-shadow-1">
+            <h3 class="p-d-flex p-jc-center">Promociones</h3>
+            <div class="p-fluid">
+                <div class="p-field">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" pInputText [(ngModel)]="promociones.titulo" name="titulo" placeholder="Cercanos a ti" required>
+                </div>
+                <div class="p-field p-d-flex p-flex-column">
+                    <label for="imagen" class="p-mb-4">Imágen</label>
+                    <app-selector-fotos *ngIf="promociones" [fotoSelec]="editando?[promociones.imagen]:[]" (checkados)="verImagenes($event)"></app-selector-fotos>
+                </div>
+                <div class="p-d-flex p-mb-2">
+                    <label for="ruta">Ruta</label>
+                </div>
+                <div class="p-field p-d-flex">
+                    <p-dropdown class="rutas p-mr-3" [(ngModel)]="rutaA" name="rutaA" (onChange)="observar($event)" [options]="categoriaBusqueda" optionLabel="label" optionValue="value" placeholder="Elige una opción" required></p-dropdown>
+                    <ng-container *ngIf="!activo; else blogs">
+                        <p-dropdown class="rutas" [(ngModel)]="rutaB" name="rutaB" [options]="busqueda" placeholder="Elige la propiedad" optionLabel="titulo" optionValue="id" [showClear]="true" required [disabled]="rutaA === '' ? true : false ">
+                            <ng-template let-busqueda pTemplate="item">
+                                <div class="contenidoDropdown">
+                                    <img src="{{busqueda.imgDestcada}}" style="width: 10%;" alt=""> {{busqueda.titulo}}
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </ng-container>
+                    <ng-template #blogs>
+                        <p-dropdown class="rutas" [(ngModel)]="rutaB" name="rutaB" [options]="bloggeos" placeholder="Elija un blog" optionLabel="titulo" optionValue="id" [showClear]="true" required [disabled]="rutaA === '' ? true : false ">
+                            <ng-template let-busqueda pTemplate="item">
+                                <div class="contenidoDropdown">
+                                    <img src="{{busqueda.imagen}}" style="width: 10%;" alt=""> {{busqueda.titulo}}
+                                </div>
+                            </ng-template>
+                        </p-dropdown>
+                    </ng-template>
+                    
+                    
+                </div>
+                <div class="p-field">
+                    <label for="descripcion">Descripción</label>
+                    <textarea type="text" pInputText [(ngModel)]="promociones.descripcion" name="descripcion" placeholder="Descripción" required></textarea>
+                </div>
+                <div class=" p-d-flex">
+                    <label class="p-mb-2" for="fecha">Fecha Inicio - Final</label>
+                </div>
+
+                <div class="p-d-flex p-jc-center">
+                    <p-calendar class="p-mr-4" [(ngModel)]="promociones.fechaInicio" name="fechaInicio" [showIcon]="true" [showButtonBar]="true" [minDate]="fechaActual" required></p-calendar>
+                    <p-calendar [(ngModel)]="promociones.fechaFin" [showIcon]="true" name="fechaFin" [showButtonBar]="true" [minDate]="fechaActual" required>
+                    </p-calendar>
+                </div>
+                <div class="p-d-flex p-mt-3 ">
+                    <button pButton type="submit" label="Guardar" (click)="guardar(promociones)" class="p-mr-4"><i class="pi pi-save"></i></button>
+                    <button pButton type="button" label="Cancelar" routerLink="/admin/publicidad" class="p-button-danger"><i class="pi pi-times"></i></button>
+                </div>
+            </div>
+        </p-card>
+    </div>
+</div>

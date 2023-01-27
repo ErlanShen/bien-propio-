@@ -1,0 +1,90 @@
+//BLOG DINAMICOS
+
+/* .container {
+    background-color: rgb(0, 19, 128);
+    height: 50vh;
+    padding: 5px;
+}
+
+.contenido1 {
+    background-color: rgb(145, 145, 206);
+}
+
+.imagen {
+    background-size: cover;
+    background-position: center center;
+    width: 15vw;
+}
+
+.contenido2 {
+    background-color: rgb(145, 145, 206);
+    max-width: -400px;
+}
+
+.prueba {
+    background-color: green;
+} */
+
+// BLOG FINAL
+.contenido1 {
+    //background-color: khaki;
+    max-width: 350px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.informacion1 {
+    height: 20vh;
+}
+
+.informacion2 {
+    margin-top: 50%;
+}
+
+.informacion3 {
+    margin-top: 20%;
+    height: 20vh;
+}
+
+.imformacion4 {
+    margin-top: 50%;
+    height: 20vh;
+}
+
+.imagenG,
+.imagenP {
+    // background-color: khaki;
+    width: 300px;
+    height: 60vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.imagenP {
+    height: 30vh;
+    margin-top: 20%;
+}
+
+.imagenG2,
+.imagenP2 {
+    width: 300px;
+    height: 60vh;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.imagenG2 {
+    margin-top: 50% !important;
+}
+
+.imagenP2 {
+    height: 45vh;
+    margin-top: 20%;
+}
+
+h2,
+p {
+    font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif;
+}

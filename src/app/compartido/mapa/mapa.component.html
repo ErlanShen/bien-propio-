@@ -1,0 +1,27 @@
+
+    <div class="p-col-12" >
+        <google-map #googleMap  [height]="altoMapa" 
+        width="100%" [center]="center" [options]="optionsMap"  (mapClick)="click($event)" [zoom]="zoom">
+        <map-marker 
+          #markerElem="mapMarker"
+          *ngFor="let marker of markers"
+          [position]="marker.position"
+          [label]="marker.label"
+          [title]="marker.title"
+          [options]="marker.options"
+          [center]="ubicacion"
+          (mapClick)="openInfo(markerElem, marker)">
+        </map-marker>
+        <map-info-window >
+         <div class="p-d-flex p-flex-column mapInfo" (click)="showResponsiveDialog()"><h3 class="p-mb-2"> {{titleContent}}</h3>
+         <h4 class="p-mb-1" *ngIf="infoContent"> Precio: {{ infoContent }}$</h4>
+         <h4 class="p-mb-1" *ngIf="!infoContent"> Aun no se añade un precio</h4>
+         <img src="{{ imgContent }}" alt="" height="auto" width="120rem"> 
+        </div>
+        </map-info-window>
+    </google-map>
+    </div>
+
+<app-dialogo-tarjeta *ngIf="displaycarta" [visible]="displaycarta" [id]="idPropiedad" (cerrado)="cerrar($event) ">
+
+</app-dialogo-tarjeta>

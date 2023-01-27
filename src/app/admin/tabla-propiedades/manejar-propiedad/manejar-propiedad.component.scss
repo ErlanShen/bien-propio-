@@ -1,0 +1,14 @@
+.contenedor{
+    margin: 1rem;
+}
+
+::ng-deep .cardContainer .p-card {
+    width: 100%;
+    padding-right: 0;
+}
+label{
+    font-weight: bold;
+}
+::ng-deep .p-checkbox .p-checkbox-box {
+    transition: none;
+}

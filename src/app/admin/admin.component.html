@@ -1,0 +1,12 @@
+<div class="container p-grid p-nogutter">
+    <p-menubar [model]="items" class="menuRespo p-col-12"></p-menubar>
+    <p-panelMenu [model]="items" class="menu p-col-2"></p-panelMenu>
+    <div class="contenido p-col">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<p-toast position="bottom-center"></p-toast>
+<p-confirmDialog  rejectButtonStyleClass="p-button-danger"  acceptLabel="{{'DIALOGO.ACEPTACION'|translate}}" rejectLabel="{{'DIALOGO.RECHAZO'|translate}}"   [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '60vw'}">
+    Content
+</p-confirmDialog>
+<ver-cargador></ver-cargador>

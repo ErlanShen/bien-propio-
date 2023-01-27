@@ -1,0 +1,25 @@
+<div class="container p-grid p-nogutter ">
+    <div class="p-col-12 p-ai-center p-grid p-flex-column">
+        <div class="p-col-12 p-mt-4 p-mb-4">
+            <h2>{{'FORMPROPIEDAD.DIRECCLI' | translate}} </h2>
+        </div>
+        <div class="p-field p-col-12 p-fluid p-grid p-d-flex">
+            <formDirect [dirProp]="propiedad" [columns]="carga" (enviarDir)="recibir($event)"></formDirect>
+        </div>
+        <div class="p-col-12  p-lg-10 p-d-flex p-jc-center  p-jc-lg-between p-jc-xl-between p-grid p-mt-4  ">
+            <button class="p-col-10  p-md-2 p-lg-2  p-xl-2   p-button-danger p-shadow-3  p-d-flex p-jc-center margen"  pButton
+                label="{{'BOTONES.CANCELAR' | translate}}" routerLink="/cuenta/perfil">
+            </button>
+            <button class="p-col-10   p-md-2 p-lg-2  p-xl-2  p-button-help p-shadow-3 p-d-flex p-jc-center  margen" pButton label="{{'BOTONES.ATRAS' | translate}}"
+            (click)="navegar(propiedad,'/cuenta/nuevo/fotos')">
+            </button>
+            <button class="p-col-10   p-md-2  p-lg-2  p-xl-2   p-button-info p-shadow-3 margen" pButton label="{{'BOTONES.BORRADOR' | translate}}"
+                (click)="guardarBorrador(propiedad)" routerLink="/cuenta/perfil">
+            </button>
+            <button class="p-col-10   p-md-2   p-lg-2  p-xl-2   p-button-warning p-shadow-3 margen" pButton
+            label="{{'BOTONES.SIGUIENTE' | translate}}" (click)="navegar(propiedad,'/cuenta/nuevo/amenidades')">
+            </button>
+        </div>
+    </div>
+
+</div>

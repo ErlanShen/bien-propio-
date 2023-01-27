@@ -1,0 +1,100 @@
+.busqueda {
+    margin-top: 20px;
+}
+
+.no {
+    margin-right: 10px;
+}
+
+.botonFecha {
+    margin-left: 10px;
+}
+
+::ng-deep .imagen {
+    height: 200px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+::ng-deep .busqueda .p-inputgroup-addon {
+    background-color: transparent;
+    border-left: none;
+    border-right: 1px solid #ced4da
+}
+
+::ng-deep .cartaBlog .p-card {
+    margin: 1rem !important;
+    max-width: 400px;
+    min-height: 100%;
+}
+
+::ng-deep .botonFecha .pi {
+    margin-left: 10px !important;
+}
+
+::ng-deep .noEncontrado {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    margin-left: 20px;
+}
+
+h2,
+h1 {
+    font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif;
+}
+
+::ng-deep .busqueda .p-inputtext {
+    width: 25vw !important;
+    border-right: transparent;
+    border-top-right-radius: 0%;
+    border-bottom-right-radius: 0%;
+}
+
+::ng-deep .verArticulo .pi {
+    margin-left: 10px;
+}
+
+::ng-deep .p-card .p-card-title {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contenidoCarta {
+    padding: 1rem;
+}
+
+.tituloCarta {
+    width: auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.subCarta {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #6c757d;
+}
+
+::ng-deep .p-card .p-card-footer {
+    padding: 0;
+}
+
+::ng-deep .p-tooltip {
+    /* If max-width does not work, try using width instead */
+    max-width: 20% !important;
+}
+
+::ng-deep .p-paginator {
+    margin-top: 20px;
+}

@@ -1,0 +1,14 @@
+<p-dialog [visible]="prendido" [transitionOptions]="'50ms'" [modal]="true" [style]="{width: '50vw'}">
+    <div class="p-grid p-d-flex p-flex-column">
+        <span style="margin-top: 8px;"></span>
+        <p-progressSpinner class="p-col p-grid p-justify-center p-aling-center"
+            [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#FFF"
+            animationDuration="2s"></p-progressSpinner>
+
+        <p class="p-col p-grid p-justify-center p-aling-center">Estamos cargando la imagen</p>
+        <div class="p-col-12">
+            <p-progressBar [value]="item" *ngFor="let item of progresoSubida">
+            </p-progressBar>
+        </div>
+    </div>
+</p-dialog>

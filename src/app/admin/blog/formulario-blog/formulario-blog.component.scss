@@ -1,0 +1,46 @@
+.container {
+    margin: 1rem;
+}
+
+::ng-deep .textarea {
+    resize: vertical !important;
+}
+
+::ng-deep .p-card .p-card-body {
+    width: 100% !important;
+}
+
+::ng-deep .formularioP .p-card {
+    width: 480px !important;
+}
+
+::ng-deep .formularioP .p-calendar .p-datepicker-month,
+::ng-deep .p-datepicker-year {
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+::ng-deep .formularioP .contenido .p-card {
+    width: 100% !important;
+}
+
+::ng-deep .ql-editor {
+    height: 80vh !important;
+}
+
+::ng-deep .p-toast .p-toast-message.p-toast-message-info {
+    background-color: #cbefff !important;
+    border: none !important;
+    border-width: 0 0 0 6px !important;
+    color: black !important;
+}
+
+.infoMensaje h4,
+p {
+    margin-bottom: 10px;
+}
+
+::ng-deep .boton {
+    max-width: 100% !important;
+}

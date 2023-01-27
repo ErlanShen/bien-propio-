@@ -1,0 +1,40 @@
+::ng-deep .vista {
+    flex-basis: 100%;
+    display: flex;
+}
+
+::ng-deep .formularioP .p-card {
+    width: 480px !important;
+}
+
+.rutas {
+    width: 100%;
+}
+
+::ng-deep .rutas .contenidoDropdown {
+    display: flex;
+    align-items: center;
+    //overflow: scroll;
+    white-space: pre-wrap !important;
+    width: 20vw;
+}
+
+.contenidoDropdown img {
+    margin-right: 10px;
+}
+
+.container {
+    min-width: 75vw;
+    margin: 1rem;
+}
+
+::ng-deep .formularioP .p-card {
+    width: 480px !important;
+}
+
+::ng-deep .formularioP .p-calendar .p-datepicker-month,
+::ng-deep .p-datepicker-year {
+    border: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

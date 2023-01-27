@@ -1,0 +1,27 @@
+<div class="fondo p-d-flex p-flex-column p-jc-center p-ac-center" [ngStyle]="{'background-image': 'url('+imagen + ')'}">
+    <div class="titulo p-d-flex p-jc-center">
+        <h1>{{titulo}}</h1>
+    </div>
+
+    <div class="botones p-d-flex p-jc-center">
+        <span class="p-buttonset">
+            <p-selectButton (onChange)="sendCategoria()" [options]="transacciones" [(ngModel)]="transaccion"
+                optionLabel="nombre" optionValue="valor"></p-selectButton>
+        </span>
+    </div>
+
+    <div class="busqueda p-d-flex p-jc-center p-input">
+        <div class="p-inputgroup p-jc-center buscar">
+            <p-autoComplete (completeMethod)="search($event)" [suggestions]="results" [dropdown]="false" [(ngModel)]="resultadoSeleccionado" field="nombre" (onSelect)="quitarEspacios()">
+                <ng-template let-results pTemplate="item" class="p-d-flex p-flex-column">
+                    <div class="p-d-flex nombre ">{{results.nombre}}
+                        <p-chip class="tipo p-chip p-shadow-1" [ngStyle]="{'background-color':results.color}">
+                            {{results.tipo}}
+                        </p-chip>
+                    </div>
+                </ng-template>
+            </p-autoComplete>
+            <span class="p-inputgroup-addon"><fa-icon [icon]="faSearch"></fa-icon></span>
+        </div>
+    </div>
+</div>

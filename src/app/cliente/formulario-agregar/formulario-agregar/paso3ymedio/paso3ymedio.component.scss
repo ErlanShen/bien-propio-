@@ -1,0 +1,32 @@
+.container >h1,h2,h3,h4,h5{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+label{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.container{
+    width: 90vw;
+}
+::ng-deep .p-checkbox .p-checkbox-box {
+    transition: none;
+}
+
+.margen{
+    margin: 15px;
+}
+
+.image{
+    border-style:inset;
+    border: 5px solid white;
+}
+
+@media  screen and (min-width:0px) and (max-width:769px){
+    .imagen{
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        object-position: center center;
+        padding: 5px;
+       
+    }
+}

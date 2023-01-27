@@ -1,0 +1,57 @@
+
+.imagen{
+    width: auto;
+    height: 100%;
+    cursor: pointer;
+}
+.header{
+    height: 10vh;
+}
+
+::ng-deep .p-megamenu{
+    background-color:transparent;
+    border: none;
+}
+
+::ng-deep .p-menubar {
+    border: none;
+    
+    margin-bottom: 0.2%;
+}
+.veinte{
+    flex-basis: 20%;
+}
+.cuarenta{
+    flex-basis: 40%;
+}
+
+::ng-deep .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link{
+    margin:auto;
+    
+    
+}
+
+::ng-deep .p-menubar:nth-child(odd) .rojo:nth-child(odd) {
+    background-color: #f8f9fa !important;
+    
+}
+
+
+@media only screen and  (max-width: 960px){
+    .invisible{
+        display: none !important;
+    }
+    .nomostrar{
+        display: none !important;
+    }
+}
+
+@media only screen and  (min-width: 961px){
+    .visible{
+       display: none !important;
+    }
+}
+
+
+
+

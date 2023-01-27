@@ -1,0 +1,43 @@
+<div class="container">
+    <p-table [value]="banners" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="{{ 'ADMINBANNER.PAGINACION1' | translate}} {first} {{ 'ADMINBANNER.HASTA' | translate}} {last} {{ 'ADMINBANNER.DE' | translate}}  {totalRecords} {{ 'ADMINBANNER.ELEMENTOS' | translate}} "
+        [rowsPerPageOptions]="[5,10,25]" [globalFilterFields]="['Mensaje']" filterGlobal>
+        <ng-template pTemplate="header">
+            <tr p-d-flex>
+                <th id="activo" class="p-md-2">
+                    {{ 'ADMINBANNER.FILA4' | translate}}
+                </th>
+                <th id="Categoria" class="p-md-2">
+                    {{ 'ADMINBANNER.FILA5' | translate}}
+                </th>
+                <th id="mensaje" class="p-md-2">
+                    {{ 'ADMINBANNER.FILA1' | translate}}
+                    <p-columnFilter #dt2 type="text" field="mensaje" display="menu">
+                    </p-columnFilter>
+                </th>
+                <th id="imagen" class="p-md-4">{{ 'ADMINBANNER.FILA2' | translate}}</th>
+                <th id="acciones">{{ 'ADMINBANNER.FILA3' | translate}}
+                </th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-banner>
+            <tr>
+                <td>
+                    <p-inputSwitch [(ngModel)]="banner.activo" (onChange)="checker(banner,$event)" [disabled]="desactivador(banner.activo, activos)"></p-inputSwitch>
+                </td>
+                <td>{{intermediario(banner.transacciones)}}</td>
+                <td>{{banner.mensaje}}</td>
+                <td>
+                    <img src="{{banner.imagen}}" alt="data" height="auto" width="60%" class="p-shadow-4">
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-shadow-3 button" routerLink="/admin/banner/{{banner.id}}">
+                    </button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-shadow-3 button 
+                    p-button-danger" (click)="borrar(banner)">
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

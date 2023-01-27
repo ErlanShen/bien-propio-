@@ -1,0 +1,27 @@
+.container >h1,h2,h3,h4,h5{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+label{
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.container{
+    
+    width: 95vw;
+
+  
+}
+::ng-deep .p-inputnumber-input {
+    flex: 1 1 auto;
+    width: 3rem;
+}
+
+.fondo{
+    background-color: red;
+}
+.fondoi{
+    background-color: royalblue;
+}
+
+.margen{
+    margin: 5px;
+}

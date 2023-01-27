@@ -1,0 +1,25 @@
+
+@media  screen and (min-width:961px) {
+    .centrar{
+        display: flex !important;
+        justify-content: center !important;
+    }
+    .end{
+        display: flex !important;
+        justify-content:flex-end !important;
+    }
+    
+}
+
+
+@media  screen and (min-width:961px) and (max-width:991px){
+    .centrar{
+        display: flex !important;
+        justify-content: start !important;
+    }
+    
+    
+}
+.asas{
+    background-color: brown;
+}

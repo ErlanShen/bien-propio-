@@ -1,0 +1,164 @@
+<div class="container">
+  <form class="FormLog"  #formularioLog="ngForm">
+
+
+    <p-messages  [(value)]="msgs2" [enableService]="false" severity="error" key="error" [escape]="false" > 
+    </p-messages>
+    
+    <h1 >{{'LOGIN.REGISTER'|translate}}</h1>
+    <div class="p-field p-fluid">
+      <div class="p-field">
+        <label for="correo" class="p-col-fixed">{{'REGISTERS.EMAILE'|translate}}</label>
+        <div class="p-col">
+          <input #email="ngModel" name="email" placeholder="{{'REGISTERS.EMAILEX'|translate}}"
+            pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}" required
+            [(ngModel)]="correo" pInputText />
+          <small *ngIf="formularioLog.controls['email']?.errors?.required && formularioLog.touched" class="p-error" >
+            {{'REGISTERS.ERRORREQ'|translate}}</small>
+          <small *ngIf="formularioLog.controls['email']?.errors?.pattern" class="p-error">
+            {{'REGISTERS.ERRORP'|translate}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="p-field p-fluid">
+      <div class="p-field">
+        <label for="clave" class="p-col-fixed">{{'REGISTERS.PASSWORDE'|translate}}</label>
+        <div class="p-col p-input-icon-right">
+          <input #password="ngModel" name="password" [(ngModel)]="clave" [type]="toggleMask?  'password': 'text'"
+            required pPassword pattern="^(?=.*\d)(?=.*[\.\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{6,30}$"
+            [feedback]="false">
+          <i class="pi" (click)="toggleMask= !toggleMask" [ngClass]="toggleMask ? 'pi-eye' : 'pi-eye-slash'"> </i>
+
+          <small *ngIf="formularioLog.controls['password']?.errors?.required && formularioLog.touched"
+            class="p-error">{{'REGISTERS.ERRORPREQ'|translate}}</small>
+          <small *ngIf="formularioLog.controls['password']?.errors?.pattern"
+            class="p-error">{{'REGISTERS.ERRORPREP'|translate}}</small>
+        </div>
+        <div class="required">
+          <ul class="p-pl-2 p-ml-2 p-mt-0" style="line-height: 1">
+            <li>{{'REGISTERS.REQUIRED.R1'|translate}}</li>
+            <li>{{'REGISTERS.REQUIRED.R2'|translate}}</li>
+            <li>{{'REGISTERS.REQUIRED.R3'|translate}}</li>
+            <li>{{'REGISTERS.REQUIRED.R4'|translate}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-field">
+        <label for="clave2" class="p-col-fixed">{{'REGISTERS.PASSWORDR'|translate}}</label>
+        <div class="p-input-icon-right">
+          <input #password2="ngModel" name="password2" type="password" [type]="toggleMask2?  'password': 'text'" ngModel
+            required confirmador="password" pPassword [feedback]="false">
+          <i class="pi" (click)="toggleMask2= !toggleMask2" [ngClass]="toggleMask2 ? 'pi-eye' : 'pi-eye-slash'"> </i>
+          <!-- <small *ngIf="formularioLog.controls['password2']?.errors?.required" class="p-error">El campo contraseña no puede estar
+              vacio</small> -->
+          <small *ngIf="formularioLog.controls['password2']?.errors?.confirmador"
+            class="p-error">{{'REGISTERS.ERRORPC'|translate}}</small>
+        </div>
+      </div>
+
+
+
+
+      <div class="p-field-checkbox">
+        <p-checkbox [(ngModel)]="mostrarf" name="messag" inputId="proCheck" binary="true">
+        </p-checkbox>
+        <label for="messag">{{'REGISTERS.MESSAGECB'|translate}}</label>
+      </div>
+
+      <div class="p-d-flex p-flex-row p-jc-center" *ngIf="mostrarf">
+
+        <form class="FormLog" fxLayout="column" #formularioLog="ngForm">
+          <h4>{{'REGISTERS.FORMPROF.PT'|translate}}</h4>
+          <div p-d-inline-flex style="height:75px">
+            <p-dropdown name="proffessional" #proffessional="ngModel" [options]="proffessionalType"
+              [(ngModel)]="selectedProffesional" placeholder="Select a Proffessional Type" optionLabel="name"
+              [showClear]="true">
+
+              <ng-template let-proffessionalType pTemplate="item">
+                <div class="country-item">
+
+                  <div>{{proffessionalType.name|translate}}</div>
+                </div>
+              </ng-template>
+
+            </p-dropdown>
+          </div>
+          <div class="p-d-flex">
+            <div class="p-d-flex p-flex-column">
+              <h4>{{'REGISTERS.FORMPROF.FN'|translate}}</h4>
+              <div class="p-d-flex p-flex-row  " style="height:75px">
+                <div class="p-grid p-fluid  p-mr-1  ">
+                  <div class="p-col-12 ">
+                    <div class="p-inputgroup ">
+                      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                      <input type="text" pInputText placeholder="First name" name="Pnombre" #Pnombre="ngModel"
+                        [(ngModel)]="Pname">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="p-d-flex p-flex-column">
+              <h4>{{'REGISTERS.FORMPROF.LN'|translate}}</h4>
+              <div class="p-d-flex p-flex-row  ">
+                <div class="p-grid p-fluid  ">
+                  <div class="p-col-12 ">
+                    <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                      <input type="text" pInputText placeholder="Last name" name="Lnombre" #Lnombre="ngModel"
+                        [(ngModel)]="Lname">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h4>{{'REGISTERS.FORMPROF.ZIP'|translate}}</h4>
+          <div class="p-grid p-fluid p-jc-center" style="height:100px">
+            <div class="p-col-12">
+              <input type="text" pInputText placeholder="Zip/Postal" name="Zip" #Zip="ngModel" [(ngModel)]="Postal">
+            </div>
+          </div>
+
+          <h4>{{'REGISTERS.FORMPROF.PNUMB'|translate}}</h4>
+          <div class="p-grid p-fluid p-jc-center p-flex-md-row ">
+            <div class="p-col-12">
+              <div class="p-inputgroup">
+                <span class="p-inputgroup-addon"><i class="pi pi-phone"></i></span>
+                <input type="text" pInputText placeholder="555" name="Pnumber" #Pnumber="ngModel" [(ngModel)]="pNumber">
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="p-d-flex p-jc-center p-ai-center">
+        <button pButton type="button" (click)="register(correo,clave,formularioLog)" label="{{'LOGIN.REGISTER'|translate}}"
+          [disabled]="formularioLog.invalid" class="ui-button-warning p-d-flex p-jc-center"> </button>
+      </div>
+
+      <p-divider></p-divider>
+      <div class="p-d-flex p-flex-column p-ai-center">
+        <span class="text"> {{'LOGIN.ORCONNECT'|translate}}</span>
+
+        <button pButton class="apple" type="button" label="Continue with Apple" icon="pi pi-apple"
+          styleClass="p-button-secondary">
+        </button>
+
+        <button pButton class="face" type="button" label="Continue with Facebook" icon="pi pi-facebook" type="submit"
+          styleClass="p-button">
+        </button>
+
+        <button pButton class="goog" type="button" label="Continue with Google" icon="pi pi-google"
+          styleClass="p-button-outlined">
+        </button>
+
+
+
+      </div>
+
+    </div>
+  </form>
+
+
+</div>

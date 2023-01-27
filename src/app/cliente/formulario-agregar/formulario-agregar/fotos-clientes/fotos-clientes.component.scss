@@ -1,0 +1,53 @@
+.file{
+    -webkit-box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.86); 
+    box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.86);  
+}
+.file .p-col-1, .p-col-2, .p-col-3, .p-col-4, .p-col-5, .p-col-6, .p-col-7, .p-col-8, .p-col-9, .p-col-10, .p-col-11, .p-col-12 {
+    flex: 0 0 auto;
+    padding: 0.0rem;
+   
+}
+.image{
+    position: relative;
+    cursor: pointer;
+}
+.buttons{
+    position: absolute;  
+}
+::ng-deep .buttons .eliminar .p-button {
+    color: #fafafa;
+    background: #db2d2d;
+    border: 0px solid #2196F3;
+    padding: 0.3rem 0.3rem;
+    font-size: 1.25rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 50%;  
+
+}
+.image-upload>input {
+    display: none;
+  }
+::ng-deep  .fa-4x {
+    font-size: 4em;
+    cursor: pointer;
+}
+.imagenContainer{
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: rgba(233, 233, 233, 0.86);
+    height: 200px;
+    border-style:inset;
+    border: 5px solid white;   
+}
+
+.cambio:hover label{
+    color: rgb(255, 255, 255);
+}
+
+.cambio:hover{
+    background-color: 	#012f89;
+    border-style: inset;
+    border: 3px dashed white;
+    
+}

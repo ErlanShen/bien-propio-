@@ -1,0 +1,183 @@
+<div class="p-grid p-nogutter p-col-12" *ngIf="identidad">
+    <p-card class="p-formgrid p-grid p-nogutter p-shadow-5">
+        <h1 class="p-d-flex p-jc-center p-mb-3">Formulario</h1>
+        <form class="container p-col-12 p-fluid p-grid" #formularioAjuste="ngForm">
+            <div class="p-fluid p-formgrid p-grid p-d-flex p-mb-2 p-col-12">
+                <div class="p-col-12 p-sm-12 p-md-6 p-lg-6 p-fluid ">
+                    <div class="p-field p-col-12">
+                        <label for="tituloDelSitio" class="p-mb-2">Titulo del Sitio</label>
+                        <input name="tituloDelSitio" #tituloDelSitio="ngModel" [(ngModel)]="identidad.tituloDelSitio"
+                            type="text" pInputText placeholder="Titulo del Sitio">
+                    </div>
+                    <div class="p-field p-col-12">
+                        <label for="fraseDelSitio" class="p-mb-2">Frase del Sitio</label>
+                        <!-- <input type="text" pInputText name="fraseDelSitio" #fraseDelSitio="ngModel"
+                            [(ngModel)]="identidad.fraseDelSitio" placeholder="Frase del Sitio"> -->
+                        <textarea name="fraseDelSitio" #fraseDelSitio="ngModel" [(ngModel)]="identidad.fraseDelSitio"
+                            type="text" rows="2" pInputTextarea placeholder="Frase del Sitio"
+                            autoResize="autoResize"></textarea>
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-12 p-md-6 p-lg-6 p-d-flex p-flex-column p-jc-center">
+                    <label for="logo" class="p-mb-4">Logotipo:</label>
+                    <app-selector-fotos *ngIf="identidad" (checkados)="verImagen($event)"
+                        [fotoSelec]="[identidad.logo]">
+                    </app-selector-fotos>
+                </div>
+            </div>
+            <!-- REDES SOCIALES -->
+            <div class="p-fluid p-formgrid p-grid p-col-12">
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Facebook</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faFacebook"
+                                [ngStyle]="{'color': identidad.facebook.length>0?'#1877f2':''}"></fa-icon>
+                        </span>
+                        <input name="facebook" #facebook="ngModel" [(ngModel)]="identidad.facebook" type="text"
+                            pInputText placeholder="https://www.facebook.com/Username/">
+                    </div>
+
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Instagram</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faInstagram"
+                                [ngStyle]="{'color': identidad.instagram.length>0 ? '#c32aa3':''}"></fa-icon>
+                        </span>
+                        <input name="instagram" #instagram="ngModel" [(ngModel)]="identidad.instagram" type="text"
+                            pInputText placeholder="https://www.instagram.com/Username/">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2"> WhatsApp</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faWhatsapp"
+                                [ngStyle]="{'color': identidad.whatsapp.length>0 ? '#25d366':''}"></fa-icon>
+                        </span>
+                        <input name="whatsapp" #whatsapp="ngModel" [(ngModel)]="identidad.whatsapp" type="text"
+                            pInputText placeholder="https://www.whatsapp.com/#/">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">YouTube</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faYoutube"
+                                [ngStyle]="{'color': identidad.youtube.length>0 ? '#ff0000':''}"></fa-icon>
+                        </span>
+                        <input name="youtube" #youtube="ngModel" [(ngModel)]="identidad.youtube" type="text" pInputText
+                            placeholder="https://www.youtube/channel/xxxxxxxx">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Telegram</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faTelegram"
+                                [ngStyle]="{'color': identidad.telegram.length>0 ? '#0088cc':''}"></fa-icon>
+                        </span>
+                        <input name="telegram" #telegram="ngModel" [(ngModel)]="identidad.telegram" type="text"
+                            pInputText placeholder="https://telegram.org/#/im">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Tik Tok</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faTiktok"
+                                [ngStyle]="{'color': identidad.tiktok.length>0 ? '#010101':''}"></fa-icon>
+                        </span>
+                        <input name="tiktok" #tiktok="ngModel" [(ngModel)]="identidad.tiktok" type="text" pInputText
+                            placeholder="https://www.tiktok.com/@Username" [ngStyle]="{'color': 'black'}">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Twitter</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faTwitter"
+                                [ngStyle]="{'color': identidad.twitter.length>0 ? '#1da1f2':''}"></fa-icon>
+                        </span>
+                        <input name="twitter" #twitter="ngModel" [(ngModel)]="identidad.twitter" type="text" pInputText
+                            placeholder="https://twitter.com/Username">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">VKontakte</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faVk"
+                                [ngStyle]="{'color': identidad.vkontakte.length>0?'#4a76a8':''}"></fa-icon>
+                        </span>
+                        <input name="vkontakte" #vkontakte="ngModel" [(ngModel)]="identidad.vkontakte" type="text"
+                            pInputText placeholder="https://vk.com/#/im">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Correo</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faEnvelope"
+                                [ngStyle]="{'color': identidad.correo.length>0 ? '#ffb903':''}"></fa-icon>
+                        </span>
+                        <input name="correo" #correo="ngModel" [(ngModel)]="identidad.correo" type="text" pInputText
+                            placeholder="tu.correo1234@ejemplo.com">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Telefonos</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faPhoneAlt"
+                                [ngStyle]="{'color': identidad.telefonos.length>0 ? '#80bb03':''}"></fa-icon>
+                        </span>
+                        <input name="telefonos" #telefonos="ngModel" [(ngModel)]="identidad.telefonos" type="text"
+                            pInputText placeholder="00 000 0000">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Horarios de Atención</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faCalendarDay"
+                                [ngStyle]="{'color': identidad.horariosDeAtencion.length>0 ? '#ffa633':''}"></fa-icon>
+                        </span>
+                        <input name="horariosDeAtencion" #horariosDeAtencion="ngModel"
+                            [(ngModel)]="identidad.horariosDeAtencion" type="text" pInputText
+                            placeholder="Horarios de Atencion">
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-sm-6 p-md-6 p-lg-4">
+                    <label for="logo" class="p-mb-2">Servicio al Cliente</label>
+                    <div class="p-inputgroup">
+                        <span class="p-inputgroup-addon">
+                            <fa-icon class="fa-2x" [icon]="faMailBulk"
+                                [ngStyle]="{'color': identidad.servicioAlCliente.length>0 ? '#7289da':''}"></fa-icon>
+                        </span>
+                        <input name="servicioAlCliente" #servicioAlCliente="ngModel"
+                            [(ngModel)]="identidad.servicioAlCliente" type="text" pInputText
+                            placeholder="Servicio al Cliente">
+                    </div>
+                </div>
+            </div>
+            <div class="p-field p-col-12 p-grid">
+                <label for="address">Direccion</label>
+                <textarea name="direccion" #direccion="ngModel" [(ngModel)]="identidad.direccion" type="text" rows="3"
+                    pInputTextarea placeholder="Direccion" autoResize="autoResize"></textarea>
+            </div>
+        </form>
+
+        <div class="p-col-12 p-d-flex p-jc-center">
+            <button pButton pRipple type="button" [label]="'BOTONES.GUARDAR' | translate"
+                class="p-button-info p-m-1 p-shadow-3" icon="pi pi-save" iconPos="right"
+                (click)="save(identidad)"></button>
+
+            <button class="p-mr-2 " pButton pRipple type="button" [label]="'BOTONES.CANCELAR' | translate"
+                class="p-button-danger p-m-1 p-shadow-3" icon="pi pi-times" iconPos="right"></button>
+        </div>
+
+    </p-card>
+</div>

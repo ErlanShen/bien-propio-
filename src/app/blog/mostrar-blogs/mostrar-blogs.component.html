@@ -1,0 +1,46 @@
+<div class="container" *ngIf="blogs && categoria ">
+    <h1>{{'MOSTRARBLOGS.TITULO' | translate}} {{categoria.nombre}} </h1>
+
+
+    <div class="busqueda p-d-flex p-jc-center">
+        <p-autoComplete (completeMethod)="search($event)" [suggestions]="resultados" [(ngModel)]="titulos" [dropdown]="false" field="titulo" placeholder="{{'MOSTRARBLOGS.FILTRAR' | translate}}">
+            <ng-template let-resultados pTemplate="item" class="p-d-flex p-flex-column">
+                <div class="p-d-flex nombre">{{resultados.titulo}}
+                </div>
+            </ng-template>
+        </p-autoComplete>
+        <span class="p-inputgroup-addon"><fa-icon [icon]="faSearch"></fa-icon></span>
+        <p-button class="botonFecha" (click)="ordenarDesc()">{{texto | translate}} <i class="pi {{icono}}"></i></p-button>
+    </div>
+
+    <div class="cartas p-grid p-nogutter">
+        <ng-container *ngIf="resultados && resultados.length === 0 else contenido">
+            <div class="noEncontrado p-col p-d-flex p-jc-center">
+                <h2>No se pudo encontrar el blog</h2>
+            </div>
+        </ng-container>
+        <ng-template #contenido>
+            <div class="cartaBlog p-col-3" *ngFor="let item of titulos ? resultados : blogs">
+                <p-card styleClass="p-card-shadow">
+                    <ng-template pTemplate="header">
+                        <div class="imagen" [ngStyle]="{'background-image':'url('+ item.imagen +')'}"></div>
+                        <div class="contenidoCarta">
+                            <div class="tituloCarta" tooltipPosition="top" pTooltip="{{item.titulo}}">
+                                {{item.titulo}}
+                            </div>
+                            <div class="descripcion">{{cortadorContenido(item.descripcion)}}</div>
+                            <!--  <quill-view class="info p-col-10" [content]="cortadorContenido(item.descripcion)" theme="snow"></quill-view> -->
+                        </div>
+
+                    </ng-template>
+                    <ng-template pTemplate="footer">
+                        <p-button class="verArticulo" routerLink="/blog/entrada/{{item.id}}">
+                            {{'MOSTRARBLOGS.VERARTICULO' | translate}}
+                        </p-button>
+                    </ng-template>
+                </p-card>
+            </div>
+        </ng-template>
+    </div>
+    <p-paginator [first]="posicion" [rows]="filas" [totalRecords]="blogs.length" (onPageChange)="onPageChange($event)" [showJumpToPageDropdown]="true"></p-paginator>
+</div>

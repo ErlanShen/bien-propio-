@@ -1,0 +1,47 @@
+.simulador {
+    width: 32vw;
+    height: 100%;
+    border-radius: 2%;
+}
+#items {
+    border-radius: 6%;
+    height: 20vh;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-style: solid;
+    border-width: 0.01rem;
+    border-color: rgb(211, 211, 211);
+    margin-bottom: 0.5rem;
+}
+
+.checkbox {
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    display: block;
+    position: relative;
+    padding: 0.4rem 0.1rem;
+}
+p-checkbox {
+    margin: top;
+    position: absolute;
+    opacity: 1;
+}
+
+.padre{
+    height: 100%;
+    width: 100%;
+}
+
+img{
+    width: 100%;
+    height: 20vh;
+    object-fit: contain;
+    object-position: center center;
+    border-width: 0.01rem;
+    border-color: rgb(204, 204, 204);
+    border-radius: 5%;
+    border-style: solid;
+}
+

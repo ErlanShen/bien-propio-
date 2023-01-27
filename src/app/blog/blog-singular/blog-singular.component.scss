@@ -1,0 +1,102 @@
+.container {
+    //  background-color: rgb(164, 230, 223);
+    height: auto;
+}
+
+.header {
+    position: relative;
+}
+
+.fondoImagen {
+    background-color: rgb(143, 142, 142);
+}
+
+.imagen {
+    // background-color: violet;
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    mix-blend-mode: darken;
+}
+
+.categoria {
+    margin-left: 20px;
+}
+
+.fecha {
+    margin-right: 20px;
+}
+
+.titulo {
+    position: absolute;
+    top: 0;
+    font-weight: bold !important;
+    font-size: 1.5rem !important;
+    padding: 1rem !important;
+    color: rgb(255, 255, 255);
+    height: 50vh;
+}
+
+.informacion {
+    //background-color: yellow;
+    margin-top: 20px;
+}
+
+.texto {
+    // background-color: grey;
+    height: 100%;
+    margin-top: 15px;
+}
+
+::ng-deep .imagenCarta {
+    height: 130px;
+    width: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    position: relative;
+}
+
+.nombreCategoria {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transition: all 0.5s;
+    background-color: rgba(0, 0, 0, 0.425);
+    color: rgb(255, 244, 244) !important;
+    opacity: 0;
+}
+
+svg {
+    width: 100%;
+    height: auto;
+    margin-top: 15px;
+}
+
+text {
+    transform: translate(50%, 50%);
+    fill: rgb(255, 255, 255);
+}
+
+.nombreCategoria-blur {
+    backdrop-filter: blur(5px);
+}
+
+::ng-deep .nombreCategoria:hover .nombre {
+    transition: transform 0.3s;
+}
+
+.nombreCategoria:hover {
+    opacity: 1;
+}
+
+.nombreCategoria .nombre .h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

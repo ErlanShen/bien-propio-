@@ -1,0 +1,53 @@
+<p-overlayPanel #op class="overPanel p-shadow-5">
+    <div class="p-grid p-col-12 p-nogutter p-align-center p-as-center p-d-flex simulador " *ngIf="lasfotos">
+        <div id="items" class="p-col-6 p-d-flex p-shadow-5 p-justify-start"
+            *ngFor="let item of cortadorArreglo(lasfotos, filas,(posicion)); let corre=index"
+            [ngStyle]="{'background-image':'url('+item.archivo+')'}">
+            <div class="p-d-flex p-justify-end checkbox">
+                <p-checkbox class="p-as-start" value="{{item.archivo}}" name="grupoSel" [(ngModel)]="misSeleccionado"
+                    (onChange)="cambiado($event, corre, lasfotos, paginaActual)">
+                </p-checkbox>
+            </div>
+        </div>
+        <div class="p-grid p-nogutter p-align-center p-col-12">
+            <div class="p-col-2">
+                <p-fileUpload mode="basic" name="myfile[]" accept="image/*" multiple="multiple" customUpload="true"
+                    (uploadHandler)="uploadPhoto(foto)" (onSelect)="ver($event)" #upL chooseLabel="Subir" iconPos="right">
+                </p-fileUpload>
+            </div>
+            <div class="p-col-10">
+                <p-paginator [first]="posicion" [rows]="filas" [totalRecords]="lasfotos.length"
+                    (onPageChange)="onPageChange($event)" [showJumpToPageDropdown]="true" [showPageLinks]="false">
+                </p-paginator>
+            </div>
+        </div>
+
+        <div class="p-col-12 p-d-flex p-jc-center">
+            <button class="p-button-info p-m-1 p-shadow-3" pButton pRipple type="button" label="Selecionar"
+                icon="pi pi-check" iconPos="right" (click)="enviador(misSeleccionado)"
+                (event)="emitter($event)"></button>
+            <button class="p-button-danger p-m-1 p-shadow-3" pButton pRipple type="button"
+                [label]="'BOTONES.CANCELAR' | translate" icon="pi pi-times" iconPos="right"
+                (click)="op.hide()"></button>
+        </div>
+    </div>
+</p-overlayPanel>
+
+<div class="p-d-flex p-grid padre">
+    <ng-template #sinFotos>
+        <div class="p-d-flex p-jc-center">
+            <h3>No tienes imagenes seleccionadas</h3>
+        </div>
+    </ng-template>
+    <div class="botonImagen p-grid p-d-flex p-flex-column p-jc-center p-as-center p-col-12">
+        <div class="p-col-12 p-mb-1 p-jc-center">
+            <button type="text" pButton label="Seleccionar Imagenes" style="font-size: 1.1rem" icon="pi pi-images"
+                iconPos="right" (click)="op.toggle($event)" class="p-mb-2"></button>
+        </div>
+        <div class="p-grid p-col-12 p-d-flex p-jc-center p-as-center" *ngIf="misSeleccionado.length>0 else sinFotos">
+            <div class="p-col-3 p-mb-1" *ngFor="let item of misSeleccionado">
+                <img src="{{item}}">
+            </div>
+        </div>
+    </div>
+</div>

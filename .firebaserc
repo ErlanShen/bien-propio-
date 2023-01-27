@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "bienpropio-f58cf": {
+      "hosting": {
+        "BienPropio": [
+          "bienpropio-f58cf"
+        ]
+      }
+    }
+  }
+}

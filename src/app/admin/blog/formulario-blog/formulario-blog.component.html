@@ -1,0 +1,70 @@
+<p-toast position="top-center" key="c">
+    <ng-template let-message pTemplate="message">
+        <div class="p-flex p-flex-column" style="flex: 1">
+            <div class="infoMensaje p-text-center">
+                <h4>{{message.summary}}</h4>
+            </div>
+            <div class="p-d-flex p-jc-center">
+                <button class="boton" type="button" pButton (click)="aceptar(blogs)" label="Guardar"></button>
+            </div>
+        </div>
+    </ng-template>
+</p-toast>
+<div class="card p-grid p-nogutter p-shadow-24" *ngIf="blogs">
+    <p-card class="container p-col p-fluid">
+        <form #formBlog="ngForm">
+            <h2 class="p-d-flex p-jc-center p-mb-3">Blogs</h2>
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field p-col-12 p-md-6">
+                    <div class="p-field p-col">
+                        <label for="titulo">Título</label>
+                        <input type="text" #nombre="ngModel" [(ngModel)]="blogs.titulo" pInputText name="nombre" placeholder="Cercanos a ti" required>
+                    </div>
+                </div>
+                <div class="p-field p-col-12 p-md-6">
+                    <label for="imagen" class="p-mb-2">Subtítulo</label>
+                    <input type="text" #subtitulo="ngModel" [(ngModel)]="blogs.subtitulo" name="subtitulo" pInputText placeholder="https://www.ejemplo.jpg" required>
+                </div>
+
+                <div class="p-field p-col-6 p-ml-2" *ngIf="categoriasBusqueda">
+                    <label  for="state">Categorias</label>
+                    <p-multiSelect #categorias="ngModel" [(ngModel)]="blogs.categorias" name="categorias" [options]="categoriasBusqueda" placeholder="Elige una Categoria" optionLabel="nombre" optionValue="id" display="chip" [style]="{'width': '100%'}" required>
+                    </p-multiSelect>
+                </div>
+
+                <div class="p-field p-col">
+                    <label class="p-mb-2 p-ml-2" for="fecha">Fecha Creación - Publicación</label>
+                    <div class="p-d-flex p-col">
+                        <p-calendar #fechaCreacion="ngModel" class="p-mr-4" [(ngModel)]="blogs.fechaCreacion" name="fechaCreacion" [showIcon]="true" [showButtonBar]="true" [touchUI]="true" [minDate]="fechaActual" required></p-calendar>
+                        <p-calendar #fechaPublicacion="ngModel" [(ngModel)]="blogs.fechaPublicacion" [showIcon]="true" name="fechaPublicacion" [showButtonBar]="true" [touchUI]="true" [minDate]="fechaActual" required>
+                        </p-calendar>
+                    </div>
+                </div>
+                <div class="p-field p-col-12">
+                    <label for="imagen" class="p-col-12 p-mb-4 p-ml-3">Imagen Principal</label>
+                    <div class="p-col-4 p-ml-3">
+                        <app-selector-fotos *ngIf="blogs" [fotoSelec]="editando?[blogs.imagen]:[]" (checkados)="verImagenes($event)"></app-selector-fotos>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-12">
+                    <div class="p-field p-col">
+                        <label for="autor" class="p-col-12 p-mb-4">Contenido</label>
+                        <div class="p-field p-col-4">
+                            <app-selector-fotos *ngIf="blogs" (checkados)="verImagenes2($event)"></app-selector-fotos>
+                        </div>
+                        <quill-editor #Editor (onEditorCreated)="rev($event)" placeholder="Ingrese el texto aquí..." (onContentChanged)="onContentChanged($event)" [modules]="config" name="contenido" [(ngModel)]="blogs.contenido" [sanitize]="true">
+                        </quill-editor>
+                    </div>
+                </div>
+
+                <div class="p-field p-col-12 p-d-flex p-jc-center">
+                    <div class="p-col-4 p-mt-3 p-d-flex">
+                        <button pButton type="submit" label="Guardar" [disabled]="formBlog.invalid" (click)="guardar(blogs, $event)" class="p-mr-4"><i class="pi pi-save"></i></button>
+                        <button pButton type="button" label="Cancelar" routerLink="/admin/blog" class="p-button-danger"><i class="pi pi-times"></i></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</div>

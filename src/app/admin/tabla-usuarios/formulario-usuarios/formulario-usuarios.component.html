@@ -1,0 +1,53 @@
+<div class="container p-d-flex p-jc-center " *ngIf="usuarios">
+    <form class="FormUser" #formularioUser="ngForm">
+        <div class="formularioP p-d-flex">
+            <p-card class="p-formgrid p-grid p-shadow-1">
+                <h3 class="p-text-center">Usuario</h3>
+                <div class="p-d-flex p-flex-column p-mt-3">
+                    <div class="p-d-flex p-flex-column p-mb-3">
+                        <label for="titulo" class="p-mb-2">Nombre</label>
+                        <input id="titulo" name="titulo" #titulo="ngModel" type="text" pInputText [(ngModel)]="usuarios.displayName"
+                            placeholder="User" required>                          
+                             <small *ngIf="formularioUser.controls['titulo']?.errors?.required.$dirty && formularioUser.touched " class="p-error"  > 
+                                {{'USERS.ERRORNOM'|translate}}</small>
+                    </div>
+
+                    <div class="p-d-flex p-flex-column  p-mt-3">
+                        <div class="p-d-flex  p-flex-row  p-ai-center"  >
+                            <label for="imagen" class="p-mb-2 ">Foto de Perfil</label>
+                            <button pButton pRipple type="button" class="p-button-rounded p-ml-2" icon="pi pi-image"></button>
+                        </div>
+                        <img  *ngIf="usuarios.photoURL; else contrario" src="{{usuarios.photoURL}}" height="auto"
+                            width="250px" class="p-shadow-4 p-mt-3">
+                        <ng-template #contrario>
+                            <div class=" p-d-flex p-jc-center p-mt-3">
+                                <h3>No hay Foto</h3>
+                            </div>
+                        </ng-template>
+
+                    </div>
+
+                    <div class="buttons p-d-flex p-jc-center p-mt-3">
+                        <button pButton pRipple type="button" label="Guardar" class="p-button-primary p-m-1 p-shadow-3"
+                        [disabled]="formularioUser.pristine"
+                         icon="pi pi-save" iconPos="left"></button>
+
+                        <button pButton pRipple type="button" label="Cancelar" class="p-button-danger p-m-1 p-shadow-3"
+                            icon="pi pi-times" iconPos="left" routerLink="/admin/usuarios"></button>
+
+
+                    </div>
+
+                    <div class="p-d-flex p-jc-center p-flex-row ">
+                        <button pButton pRipple type="button" label="Cambiar Clave"
+                            class="p-button-secondary p-m-1 p-shadow-3 ancho p-d-flex " icon="pi pi-send" (click)="enviarclave(usuarios.email)"
+                            iconPos="left"></button>
+                    </div>
+
+                    <p-toast position="bottom-center"></p-toast>
+                </div>
+            </p-card>
+        </div>
+    </form>
+
+</div>

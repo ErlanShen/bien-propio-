@@ -1,0 +1,25 @@
+
+::ng-deep .p-card{
+    background-color: #001e47;
+    box-shadow: 0 6px 8px 0 rgba(0,0,0,0.63);
+    
+    color:white;
+    border-radius: 3%;
+    font-size: 1.1rem;
+    width: 80%;
+}
+::ng-deep .p-card:hover{
+
+    box-shadow: 1px 7px 10px 1px rgba(0,0,0,0.7);
+
+}
+#ancho100 ::ng-deep .p-dropdown{
+    width: 100% !important;
+}
+#boton ::ng-deep .p-button{
+    width: 100%;
+}
+
+::ng-deep .p-md-6{
+    padding: 0;
+}

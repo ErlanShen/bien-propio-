@@ -1,0 +1,107 @@
+.fondo {
+    height: 70vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.titulo h1 {
+    font-family: TruliaSans, system, -apple-system, Roboto, "Segoe UI Bold", Arial, sans-serif;
+    font-size: 3rem;
+}
+
+.botones {
+    margin-top: 20px;
+}
+
+::ng-deep .botones .p-button {
+    border-radius: 2% !important;
+    background-color: rgba($color: #000000, $alpha: 0.4);
+    color: aliceblue;
+    border: none;
+    padding: 8px 24px;
+    font-weight: normal;
+    width: auto;
+    font-size: 1rem;
+}
+
+::ng-deep .p-selectbutton .p-button.p-highlight {
+    background: #000000;
+    border-color: #5e5f5f;
+    color: #ffffff;
+}
+
+.busqueda {
+    margin-top: 10px;
+}
+
+::ng-deep .busqueda .p-inputtext  {
+    width: 45vw !important;
+    height: 100%;
+    font-size: 1rem;
+}
+
+::ng-deep .busqueda .p-button {
+    height: 100%;
+    border-top-right-radius: 15%;
+    border-bottom-right-radius: 15%;
+}
+
+.nombre{
+    font-size: 18px;
+    color: rgb(75, 75, 75);
+}
+.tipo{
+    font-size: 12px;
+    margin-left: 0.4rem;
+}
+::ng-deep .busqueda .p-chip .p-chip-text {
+    line-height: 1.2;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    font-size: 12px;
+}
+::ng-deep .busqueda .p-chip {
+    background-color: #dee2e613;
+    padding: 0.2rem;
+    color: #ffffff;
+    border-radius: 16px;
+    font-size: 13px;
+    width: auto;
+    height: 1.4rem;
+    font-weight: bold;
+}
+.c{
+    background-color: #007fd3e1;
+    color: #dd5100cb;
+    flood-color: #2bff00a1;
+}
+::ng-deep .busqueda .p-inputgroup-addon {
+    background: #ffffff;
+    color: #6c757d;
+    border-top: 0px solid #ced4da;
+    border-left: 0px solid #ced4da;
+    border-bottom: 0px solid #ced4da;
+    padding: 0.0rem 0.0rem;
+    min-width: 2.357rem;
+   
+   
+}
+::ng-deep .busqueda .p-inputtext {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 1rem;
+    color: #495057;
+    background: #ffffff;
+    padding: 0.5rem 0.5rem;
+    border: 1px solid #ffffff;
+    //transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    //outline: 1px solid #ffffff;
+}
+
+::ng-deep .busqueda ::ng-deep .p-inputgroup-addon:last-child, ::ng-deep .p-inputgroup button:last-child, ::ng-deep .p-inputgroup input:last-child {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}

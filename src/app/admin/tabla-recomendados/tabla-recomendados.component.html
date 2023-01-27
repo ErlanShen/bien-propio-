@@ -1,0 +1,57 @@
+<div class="container">
+    <p-table [value]="recomendado" styleClass="p-datatable-striped" [paginator]="true" [rows]="5" [showCurrentPageReport]="true" currentPageReportTemplate="{{ 'ADMINBANNER.PAGINACION1' | translate}} {first} {{ 'ADMINBANNER.HASTA' | translate}} {last} {{ 'ADMINBANNER.DE' | translate}}  {totalRecords} {{ 'ADMINBANNER.ELEMENTOS' | translate}} "
+        [rowsPerPageOptions]="[5,10,25]" [globalFilterFields]="['Mensaje']" filterGlobal>
+        <ng-template pTemplate="header">
+            <tr p-d-flex>
+                <th id="activo" class="p-md-2">
+                    {{ 'ADMINRECOMENDADOS.ACTIVO' | translate}} {{ numRecomendados}}
+                </th>
+                <th id="orden" class="p-md-2">
+                    {{ 'ADMINRECOMENDADOS.ORDEN' | translate}}
+                </th>
+                <th id="titulo" class="p-md-2">
+                    {{ 'ADMINRECOMENDADOS.TITULO' | translate}}
+                    <p-columnFilter #dt2 type="text" field="mensaje" display="menu">
+                    </p-columnFilter>
+                </th>
+                <th id="propiedades" class="p-md-2">
+                    {{ 'ADMINRECOMENDADOS.PROPIEDADES' | translate}}
+                    <p-columnFilter #dt2 type="text" field="mensaje" display="menu">
+                    </p-columnFilter>
+                </th>
+                <th id="acciones">{{'ADMINRECOMENDADOS.ACCIONES' | translate}}</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-recomendado>
+            <tr>
+                <td>
+                    <p-inputSwitch [(ngModel)]="recomendado.activo" (onChange)="cambio(recomendado,$event)"></p-inputSwitch>
+                </td>
+                <td>
+                    {{recomendado.orden}}
+                </td>
+                <td>
+                    {{recomendado.titulo}}
+                </td>
+                <td>
+                    <ng-container *ngFor="let item of prueba">
+                        <!--  <pre>{{item | json}}</pre> -->
+                        <div>
+                            {{item.titulo}}
+                        </div>
+
+                    </ng-container>
+
+                </td>
+                <td>
+                    <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-shadow-3 p-mr-4" routerLink="/admin/formrecomendados/{{recomendado.id}}">
+                        </button>
+                    <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger  p-shadow-3" (click)="borrar(recomendado)">
+                        </button>
+                </td>
+
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
